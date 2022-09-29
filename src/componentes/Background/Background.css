@@ -1,0 +1,40 @@
+.background img {
+  position: static;
+  width: 1299.00px;
+  height: 740px;
+  left: 209.34px;
+  top: 170px;
+  opacity: 0.2;
+  background-color: transparent;
+}
+
+.gradient {
+  background-image: linear-gradient(to bottom, rebeccapurple, steelblue, turquoise);
+  color: black;
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-align: justify;
+  font-size: 80px;
+  font-family: Nunito Sans;
+  position: absolute;
+  margin-top: 25px;
+  margin-left: 250px;
+
+  /* Adicionado: */
+  -webkit-text-fill-color: transparent;
+}
+
+.information {
+
+  color: black;
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-align: center;
+  font-size: 20px;
+  font-family: Nunito Sans;
+  position: absolute;
+  margin-top: 130px;
+  margin-left: 250px;
+
+
+}

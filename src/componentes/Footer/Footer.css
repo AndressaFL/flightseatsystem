@@ -1,0 +1,29 @@
+.bg-color {
+    
+    background-color: black;
+}
+
+.container {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-right: auto;
+    margin-left: auto;
+    
+   
+}
+.py-3 {
+    padding-top: 1rem!important;
+    padding-bottom: 1rem!important;
+}
+.mt-auto {
+    margin-top: auto!important;
+}
+
+.footer {
+    display: block;
+    
+}
+

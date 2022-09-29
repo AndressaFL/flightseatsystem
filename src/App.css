@@ -14,14 +14,20 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #282c340a;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  font-family: 'Nunito Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 96px;
+
+align-items: center;
+
 }
 
 .App-link {
