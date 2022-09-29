@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/flightseatsystem/static/css/main.d1087996.css",
+    "main.js": "/flightseatsystem/static/js/main.010f3334.js",
+    "index.html": "/flightseatsystem/index.html",
+    "main.d1087996.css.map": "/flightseatsystem/static/css/main.d1087996.css.map",
+    "main.010f3334.js.map": "/flightseatsystem/static/js/main.010f3334.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d1087996.css",
+    "static/js/main.010f3334.js"
+  ]
+}
