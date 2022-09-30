@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Support from "./pages/Support";
 import Template from "./pages/Template";
+import FormLogin from "./components/FormLogin/FormLogin";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
            <Route index element={<Home />} />
            <Route path="home" element={<Home />} />
            <Route path="support" element={<Support />} />
+           <Route path="login" element={<FormLogin />} />
            <Route path="*" element={<NoMatch />} />
          </Route>
        </Routes>

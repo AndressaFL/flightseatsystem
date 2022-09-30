@@ -1,6 +1,6 @@
 function Support() {
     return (
-        <p>Support PAge!</p>
+        <p>Support Page!</p>
     );
 }
 export default Support;
