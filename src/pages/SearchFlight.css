@@ -39,9 +39,10 @@
   
   .info-box {
     padding: 10px 0;
-    margin-top: 20px;
+    margin-top: 5px;
     flex: 3;
     border-right: 20px solid transparent;
+    
   }
   .info-box:last-child {
     border-right: none;
@@ -65,18 +66,20 @@
   #flight-type {
     display: flex;
     justify-content: flex-start;
-    border-bottom: 1px dotted silver;
+    
   }
   #flight-type .info-box {
     flex: 0 1 25%;
     display:flex;
     align-items: center;
+    border-bottom: 1px dotted silver;
+    
   }
   
   #flight-depart {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px dotted silver;
+    
   }
   #flight-depart .info-box {
     position: relative;
@@ -87,7 +90,7 @@
   }
   #depart-res p, #arrive-res p {
     padding: 7px 2px;
-    border-bottom: 1px dotted silver;
+    
   }
   #depart-res p:hover, #arrive-res p:hover {
     background: #EDEDED;
@@ -96,12 +99,14 @@
   
   #flight-dates {
     display: flex;
-    border-bottom: 1px dotted silver;
+    
   }
   
   #flight-info {
     display: flex;
     border-bottom: 1px dotted silver;
+    border-top: 1px dotted silver;
+    
   }
   
   #flight-search .info-box {

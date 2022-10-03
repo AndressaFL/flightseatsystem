@@ -22,7 +22,7 @@ function SearchFlight() {
                                 </div>
                                 <div className="info-box" id="arrive-box">
                                     <label form="">ARRIVING</label>
-                                    <input type="text" id="dep-to" />
+                                    <input type="text" id="dep-to" readOnly/>
                                     <div id="arrive-res"></div>
                                 </div>
                                 <div id="flight-dates">
@@ -34,16 +34,9 @@ function SearchFlight() {
                                         <label form="">TRAVEL TIME</label>
                                         <input type="text" id="leave-date" readOnly />
                                     </div>
-                                    <div id="flight-info">
-                                        <div className="info-box">
-                                            <label form="adults">ADULTS</label>
-                                            <select name="adults" id="adults">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                            </select>
-                                        </div>
+                                    <div className="info-box">
+                                        <label form="">SEAT</label>
+                                        <input type="text" id="leave-date" readOnly />
                                     </div>
                                 </div>
                             </div>
