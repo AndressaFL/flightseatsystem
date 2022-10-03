@@ -64,7 +64,7 @@ export default function (props) {
               <input
                 type="email"
                 className="form-control mt-1"
-                placeholder="e.g Jane Doe"
+                placeholder="e.g Rafael Lazoti"
               />
             </div>
             <div className="form-group mt-3">
@@ -80,8 +80,7 @@ export default function (props) {
               <input
                 type="password"
                 className="form-control mt-1"
-                placeholder="Password"
-              />
+                placeholder="Password"/>
             </div>
             <div className="d-grid gap-2 mt-3">
               <button type="submit" className="btn btn-primary">

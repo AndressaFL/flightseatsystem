@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Support from "./pages/Support";
 import Template from "./pages/Template";
 import FormLogin from "./pages/FormLogin";
+import SearchFlight from "./pages/SearchFlight";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
            <Route path="home" element={<Home />} />
            <Route path="support" element={<Support />} />
            <Route path="signin" element={<FormLogin />} />
+           <Route path="searchflight" element={<SearchFlight />} />
            <Route path="*" element={<NoMatch />} />
          </Route>
        </Routes>
