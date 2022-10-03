@@ -5,9 +5,7 @@ import Footer from '../components/Footer/Footer';
 
 function Home() {
     return (
-        
         <Background />
-     
     );
 }
 export default Home;

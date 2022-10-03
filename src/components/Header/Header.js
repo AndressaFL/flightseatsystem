@@ -11,7 +11,7 @@ function Header() {
                 <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto ">
                     <a className="me-3 py-2 text-dark text-decoration-none" href="#">About us</a>
                     <Link className="me-3 py-2 text-dark text-decoration-none" to="support">Support</Link>
-                    <Link className="btn btn-primary" to="login">Sign In</Link>
+                    <Link className="btn btn-primary" to="signin">Sign In</Link>
                 </nav>
             </div>
         </header>
