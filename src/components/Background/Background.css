@@ -7,6 +7,11 @@
   opacity: 0.2;
   background-color: transparent;
 }
+.responsive {
+  width: 100%;
+  max-width: 1299px;
+  height: auto;
+}
 
 .gradient {
   background-image: linear-gradient(to bottom, rebeccapurple, steelblue, turquoise);
@@ -16,7 +21,7 @@
   text-align: justify;
   font-size: 80px;
   font-family: Nunito Sans;
-  position: absolute;
+  position:absolute;
   margin-top: 25px;
   margin-left: 250px;
 

@@ -2,8 +2,9 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Support from "./pages/Support";
 import Template from "./pages/Template";
-import FormLogin from "./pages/FormLogin";
+import SignIn from "./pages/SignIn";
 import SearchFlight from "./pages/SearchFlight";
+import SignUp from "./pages/SignUp";
 
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
            <Route index element={<Home />} />
            <Route path="home" element={<Home />} />
            <Route path="support" element={<Support />} />
-           <Route path="signin" element={<FormLogin />} />
+           <Route path="signin" element={<SignIn />} />
+           <Route path="signup" element={<SignUp />} />
            <Route path="searchflight" element={<SearchFlight />} />
            <Route path="*" element={<NoMatch />} />
          </Route>
