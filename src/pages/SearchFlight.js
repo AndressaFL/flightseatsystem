@@ -33,10 +33,12 @@ function SearchFlight() {
                                         <input type="text" id="leave-date" readOnly />
                                     </div>
                                 </div>
+                                <div id="flight-dates">
                                 <div className="info-box" id="arrive-box">
                                     <label form="">ARRIVING</label>
                                     <input type="text" id="dep-to" readOnly/>
-                                    <div id="arrive-res"></div>
+                                   
+                                </div>
                                 </div>
                                 <div id="flight-dates">
                                     <div className="info-box">
