@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter>
        <Routes>
-         <Route path="/flightseatsystem" element={<Template />}>
+         <Route path="/" element={<Template />}>
            <Route index element={<Home />} />
            <Route path="home" element={<Home />} />
            <Route path="support" element={<Support />} />
