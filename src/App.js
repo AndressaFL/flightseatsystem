@@ -29,7 +29,7 @@ function NoMatch() {
   return (
     <div>
       <h2>Nothing to see here!</h2>
-      <p><Link to="/flightseatsystem">Go to the home page</Link></p>
+      <p><Link to="/home">Go to the home page</Link></p>
     </div>
   );
 }
