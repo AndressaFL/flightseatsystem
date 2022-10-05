@@ -5,6 +5,7 @@ import Template from "./pages/Template";
 import SignIn from "./pages/SignIn";
 import SearchFlight from "./pages/SearchFlight";
 import SignUp from "./pages/SignUp";
+import BookingSeat from "./pages/BookingSeat";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
            <Route path="signin" element={<SignIn />} />
            <Route path="signup" element={<SignUp />} />
            <Route path="searchflight" element={<SearchFlight />} />
+           <Route path="bookseat" element={<BookingSeat />} />
            <Route path="*" element={<NoMatch />} />
          </Route>
        </Routes>

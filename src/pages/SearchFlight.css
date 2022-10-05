@@ -18,14 +18,14 @@
   
   }
   
-  #header {
+  #search {
     height: 80px;
     background:rgb(77, 74, 74);
     display: flex;
     justify-content: flex-start;
     align-items: center;
   }
-  #header h1 {
+  #search h1 {
     color: #FFF;
     margin-left: 20px;
     font-size: 1.3em

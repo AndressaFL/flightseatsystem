@@ -5,11 +5,13 @@ import Header from '../components/Header/Header';
 
 const Template = () => {
     return (
-        <div className="App container py-3">
+        <>
             <Header />
-            <Outlet />
+            <main>
+                <Outlet />
+            </main>
             <Footer />
-        </div>
+        </>
     )
 };
 

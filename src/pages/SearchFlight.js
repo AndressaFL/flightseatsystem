@@ -2,9 +2,9 @@ import './SearchFlight.css'
 function SearchFlight() {
     //JSX como o react le e tranforma elementos no DOM
     return (
-        <header>
+        <>
             <div id="search-form">
-                <div id="header">
+                <div id="search">
                     <h1>SEARCH YOUR FLIGHT</h1>
                 </div>
                 <section>
@@ -57,7 +57,7 @@ function SearchFlight() {
                 </section>
             </div>
             <div id="confirm"></div>
-        </header>
+            </>
     )
 }
 export default SearchFlight
