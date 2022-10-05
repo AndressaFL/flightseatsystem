@@ -1,6 +1,24 @@
 import './BookingSeat.css';
+import { useState } from "react";
 
 function BookingSeat() {
+    const [seats, setSeats] = useState({ "s1": false });
+
+    const handleSeatClick = (event) => {
+        setSeats(previousState => {
+            let seatState = !previousState[event.target.id];
+            previousState[event.target.id] = seatState;
+
+            if (seatState) {
+                event.target.classList.add("seat-selected");
+            } else {
+                event.target.classList.remove("seat-selected");
+            }
+
+            return previousState;
+        });
+    }
+
     return (
         <div className="container">
             <div className="row">
@@ -11,10 +29,10 @@ function BookingSeat() {
                         <div className="inner">
                             <div className="leftside ">
 
-                                <div id="s1" className="seat1"></div>
-                                <div id="s2" className="seat2"></div>
-                                <div id="s3" className="seat3"></div>
-                                <div id="s4" className="seat4"></div>
+                                <div id="s1" className="seat1" onClick={handleSeatClick}></div>
+                                <div id="s2" className="seat2" onClick={handleSeatClick}></div>
+                                <div id="s3" className="seat3" onClick={handleSeatClick}></div>
+                                <div id="s4" className="seat4" onClick={handleSeatClick}></div>
                                 <div id="s5" className="seat5"></div>
                                 <div id="s6" className="seat6"></div>
                                 <div id="s7" className="seat7"></div>

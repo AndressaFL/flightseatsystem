@@ -1,3 +1,7 @@
+.seat-selected {
+    background-color: black !important;
+}
+
 .bus {
     display: flex;
     justify-content: left;

@@ -58,6 +58,6 @@ function SearchFlight() {
             </div>
             <div id="confirm"></div>
             </>
-    )
+    );
 }
 export default SearchFlight
