@@ -1,6 +1,10 @@
 .seat-selected {
-    background-color: black !important;
+    background-color: rgb(170, 170, 12) !important;
 
+}
+
+.seat-unavailable {
+    background-color: #ccc !important;
 }
 
 
@@ -12,11 +16,11 @@
 .inner {
     display: flex;
     justify-content: space-between;
-    width: 1299px;
+    /*width: 1299px;*/
 }
 
 .rightside {
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .leftside,
@@ -24,20 +28,15 @@
     display: flex;
     flex-wrap: wrap;
 }
-    .leftside label {
-       
-        color: #fff;
-       
-      }
 
 .leftside div,
 .rightside div  {
     width: 30px;
     height: 30px;
-    background-color: rebeccapurple;
+    background-color: rgb(36, 99, 181);
     color: #fff;
     text-align: center;
-    
+    font-weight: bold;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     margin-left: 10px;

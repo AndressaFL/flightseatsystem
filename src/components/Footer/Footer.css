@@ -2,6 +2,8 @@
     
     background-color: black;
     
+    
+    
 }
 
 .container {
@@ -15,18 +17,23 @@
     padding-top: 80px;
     padding-bottom: 20px;
     
+    
+    
    
 }
 .py-3 {
     padding-top: 1rem!important;
     padding-bottom: 1rem!important;
+    
 }
 .mt-auto {
     margin-top: auto!important;
+    
 }
 
 .footer {
     display: block;
+    
     
 }
 
