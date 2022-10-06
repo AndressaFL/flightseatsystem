@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function BookingSeat() {
   const [seats, setSeats] = useState([
-    { id: "s1", status: "available", position: "left" },
+    { id: "s1", status: "available", position: "left" , number: "1A"},
     { id: "s2", status: "unavailable", position: "left" },
     { id: "s3", status: "available", position: "left" },
     { id: "s4", status: "available", position: "left" },
@@ -67,7 +67,7 @@ function BookingSeat() {
                         id={seat.id}
                         className={seat.status}
                         onClick={handleSeatClick}
-                      ></div>
+                      >{seat.number}</div>
                     );
                   })}
               </div>
