@@ -1,10 +1,14 @@
-.seat-selected {
-    background-color: rgb(170, 170, 12) !important;
+.selected {
+    background-color: red !important;
 
 }
 
-.seat-unavailable {
+.unavailable {
     background-color: #ccc !important;
+}
+
+.available {
+    background-color: green !important;
 }
 
 

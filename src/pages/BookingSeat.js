@@ -15,16 +15,19 @@ function BookingSeat() {
 
   const handleSeatClick = (event) => {
     setSeats((previousState) => {
-      let seatState = !previousState[event.target.id];
-      previousState[event.target.id] = seatState;
-
-      if (seatState) {
-        event.target.classList.add("seat-selected");
-      } else {
-        event.target.classList.remove("seat-selected");
-      }
-
-      return previousState;
+      return previousState.map((seat) => {
+        if (seat.id == event.target.id) {
+          if (seat.status == "available") {
+            return {...seat, status: "selected"};
+          } else if (seat.status == "selected") {
+            return {...seat, status: "available"};
+          } else {
+            return seat;
+          }
+        } else {
+          return seat;
+        }
+      });
     });
   };
 
@@ -39,8 +42,9 @@ function BookingSeat() {
                 {seats.map((seat, index) => {
                   return (
                     <div
+                      key={seat.id}
                       id={seat.id}
-                      className={"seat-" + seat.status}
+                      className={seat.status}
                       onClick={handleSeatClick}
                     ></div>
                   );
