@@ -3,11 +3,16 @@ import { useState } from "react";
 
 function BookingSeat() {
   const [seats, setSeats] = useState([
-    { id: "s1", status: "available" },
-    { id: "s2", status: "unavailable" },
+    { id: "s1", status: "available", className:"leftside" },
+    { id: "s2", status: "unavailable", className:"rightside" },
     { id: "s3", status: "available" },
     { id: "s4", status: "available" },
     { id: "s5", status: "unavailable" },
+    { id: "s6", status: "available" },
+    { id: "s7", status: "unavailable" },
+    { id: "s8", status: "available" },
+    { id: "s9", status: "available" },
+    { id: "s10", status: "unavailable" },
   ]);
   //const [unavailableSeats, setUnavailableSeats] = useState({ s3: true })
 
@@ -48,6 +53,7 @@ function BookingSeat() {
                       onClick={handleSeatClick}
                     ></div>
                   );
+           
                 })}
                 {/* <div id="s1" className="seat1" onClick={handleSeatClick}>
                   1A
@@ -72,6 +78,7 @@ function BookingSeat() {
               </div>
             </div>
             <div className="rightside">
+              
               {/* <div id="s19" className="seat19"></div>
               <div id="s20" className="seat20"></div>
               <div id="s21" className="seat21"></div>
