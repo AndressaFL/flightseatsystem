@@ -37,7 +37,7 @@
 .rightside div  {
     width: 30px;
     height: 30px;
-    background-color: rgb(36, 99, 181);
+    
     color: #fff;
     text-align: center;
     font-weight: bold;
@@ -62,7 +62,7 @@
 }*/
 
 #selectedseataDisplay{
-    display: flex;
+display: flex;
 flex-wrap: wrap;
 width: 200px;
 height: 200px;
