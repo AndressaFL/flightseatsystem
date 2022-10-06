@@ -3,8 +3,8 @@ import { useState } from "react";
 
 function BookingSeat() {
   const [seats, setSeats] = useState([
-    { id: "s1", status: "available", className:"leftside" },
-    { id: "s2", status: "unavailable", className:"rightside" },
+    { id: "s1", status: "available" },
+    { id: "s2", status: "unavailable" },
     { id: "s3", status: "available" },
     { id: "s4", status: "available" },
     { id: "s5", status: "unavailable" },
@@ -13,6 +13,8 @@ function BookingSeat() {
     { id: "s8", status: "available" },
     { id: "s9", status: "available" },
     { id: "s10", status: "unavailable" },
+    { id: "s11", status: "available" },
+    { id: "s12", status: "available" },
   ]);
   //const [unavailableSeats, setUnavailableSeats] = useState({ s3: true })
 
