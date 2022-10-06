@@ -28,8 +28,7 @@ function BookingSeat() {
                         </div>
                         <div className="inner">
                             <div className="leftside ">
-
-                                <div id="s1" className="seat1" onClick={handleSeatClick}></div>
+                                <div id="s1" className="seat1" onClick={handleSeatClick}>1A</div>
                                 <div id="s2" className="seat2" onClick={handleSeatClick}></div>
                                 <div id="s3" className="seat3" onClick={handleSeatClick}></div>
                                 <div id="s4" className="seat4" onClick={handleSeatClick}></div>

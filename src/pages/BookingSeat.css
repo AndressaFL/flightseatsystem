@@ -1,6 +1,8 @@
 .seat-selected {
     background-color: black !important;
+
 }
+
 
 .bus {
     display: flex;
@@ -22,20 +24,28 @@
     display: flex;
     flex-wrap: wrap;
 }
+    .leftside label {
+       
+        color: #fff;
+       
+      }
 
 .leftside div,
 .rightside div  {
     width: 30px;
     height: 30px;
     background-color: rebeccapurple;
+    color: #fff;
+    text-align: center;
+    
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     margin-left: 10px;
     cursor:pointer;
-    border: 3px solid #d4a8ff;
+    /*border: 3px solid #d4a8ff;*/
 }
 
-.leftside div:hover,
+/*.leftside div:hover,
 .rightside div:hover {
     background-color: #d4a8ff;
     border: 5px solid #d4a8ff;
@@ -46,7 +56,8 @@
 .selected:hover {
     background-color: #7ace7d !important;
     border: 5px solid #37a262 !important;
-}
+}*/
+
 #selectedseataDisplay{
     display: flex;
 flex-wrap: wrap;
@@ -54,21 +65,4 @@ width: 200px;
 height: 200px;
 margin-top: 20px;
 }
-#selectedseataDisplay li{
-background-color: #7ace7d;
-color: #fff;
-text-transform: capitalize;
-font-size: 14px;
-font-weight: bold;
-font-family: monospace;
-padding: 5px;
-list-style: none;
-height: 35px;
-width: 60px;
-margin-right: 5px;
-border: 2px solid #37a262;
-border-top-left-radius: 20px;
-border-top-right-radius: 20px;
-text-align: center;
-margin-bottom:5px;
-}
+
