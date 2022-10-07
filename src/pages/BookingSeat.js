@@ -2,31 +2,44 @@ import "./BookingSeat.css";
 import { useState } from "react";
 
 function BookingSeat() {
+  
   const [seats, setSeats] = useState([
     { id: "s1", status: "available", position: "left" , number: "1A"},
-    { id: "s2", status: "unavailable", position: "left" },
-    { id: "s3", status: "available", position: "left" },
-    { id: "s4", status: "available", position: "left" },
-    { id: "s5", status: "available", position: "left" },
-    { id: "s6", status: "available", position: "left" },
-    { id: "s7", status: "available", position: "left" },
-    { id: "s8", status: "available", position: "left" },
-    { id: "s9", status: "available", position: "left" },
-    { id: "s10", status: "available", position: "left" },
-    { id: "s11", status: "available", position: "left" },
-    { id: "s12", status: "available", position: "left" },
-    { id: "s13", status: "available", position: "right" },
-    { id: "s14", status: "available", position: "right" },
-    { id: "s15", status: "available", position: "right" },
-    { id: "s16", status: "unavailable", position: "right" },
-    { id: "s17", status: "available", position: "right" },
-    { id: "s18", status: "available", position: "right" },
-    { id: "s19", status: "unavailable", position: "right" },
-    { id: "s20", status: "available", position: "right" },
-    { id: "s21", status: "unavailable", position: "right" },
-    { id: "s22", status: "available", position: "right" },
-    { id: "s23", status: "available", position: "right" },
-    { id: "s24", status: "unavailable", position: "right" },
+    { id: "s2", status: "unavailable", position: "left", number: "1B" },
+    { id: "s3", status: "available", position: "left" ,number: "1C"},
+    { id: "s4", status: "available", position: "left" ,number: "2A"},
+    { id: "s5", status: "available", position: "left" ,number: "2B"},
+    { id: "s6", status: "available", position: "left" ,number: "2C"},
+    { id: "s7", status: "available", position: "left" ,number: "3A"},
+    { id: "s8", status: "available", position: "left" ,number: "3B"},
+    { id: "s9", status: "available", position: "left" ,number: "3C"},
+    { id: "s10", status: "available", position: "left" ,number: "4A"},
+    { id: "s11", status: "available", position: "left" ,number: "4B"},
+    { id: "s12", status: "available", position: "left" ,number: "4C"},
+    { id: "s13", status: "available", position: "left" ,number: "5A"},
+    { id: "s14", status: "available", position: "left" ,number: "5B"},
+    { id: "s15", status: "available", position: "left" ,number: "5C"},
+    { id: "s16", status: "available", position: "left" ,number: "6A"},
+    { id: "s17", status: "available", position: "left" ,number: "6B"},
+    { id: "s18", status: "available", position: "left" ,number: "6C"},
+    { id: "s19", status: "available", position: "right" ,number: "1D"},
+    { id: "s20", status: "available", position: "right" ,number: "1E"},
+    { id: "s21", status: "available", position: "right" ,number: "1F"},
+    { id: "s22", status: "unavailable", position: "right",number: "2D"},
+    { id: "s23", status: "available", position: "right" ,number: "2E"},
+    { id: "s24", status: "available", position: "right" ,number: "2F"},
+    { id: "s25", status: "unavailable", position: "right",number: "3D"},
+    { id: "s26", status: "available", position: "right" ,number: "3E"},
+    { id: "s27", status: "unavailable", position: "right" ,number: "3F"},
+    { id: "s28", status: "available", position: "right" ,number: "4D"},
+    { id: "s29", status: "available", position: "right" ,number: "4E"},
+    { id: "s30", status: "unavailable", position: "right",number: "4F"},
+    { id: "s31", status: "unavailable", position: "right" ,number: "5D"},
+    { id: "s32", status: "available", position: "right" ,number: "5E"},
+    { id: "s33", status: "unavailable", position: "right" ,number: "5F"},
+    { id: "s34", status: "available", position: "right" ,number: "6D"},
+    { id: "s35", status: "available", position: "right" ,number: "6E"},
+    { id: "s36", status: "unavailable", position: "right" ,number: "6F"},
   ]);
   //const [unavailableSeats, setUnavailableSeats] = useState({ s3: true })
 
@@ -83,7 +96,7 @@ function BookingSeat() {
                       id={seat.id}
                       className={seat.status}
                       onClick={handleSeatClick}
-                    ></div>
+                    >{seat.number}</div>
                   );
                 })}
             </div>

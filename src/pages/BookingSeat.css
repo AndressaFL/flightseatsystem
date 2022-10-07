@@ -1,5 +1,5 @@
 .selected {
-    background-color: red !important;
+    background-color: rgb(40, 40, 205) !important;
 
 }
 
@@ -33,6 +33,18 @@
     flex-wrap: wrap;
 }
 
+.container {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 80px;
+    padding-bottom: 300px;
+}
+
 .leftside div,
 .rightside div  {
     width: 30px;
@@ -45,6 +57,7 @@
     border-top-right-radius: 10px;
     margin-left: 10px;
     cursor:pointer;
+    padding: auto;
     /*border: 3px solid #d4a8ff;*/
 }
 
@@ -66,6 +79,6 @@ display: flex;
 flex-wrap: wrap;
 width: 200px;
 height: 200px;
-margin-top: 20px;
+margin-top: 100px;
 }
 
