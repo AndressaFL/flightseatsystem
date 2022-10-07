@@ -65,7 +65,7 @@ function BookingSeat() {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-md-3">
+        <div className="col-md-4">
           <div className="bus">
             <div id="selectedseataDisplay"></div>
             <div className="inner">
@@ -106,7 +106,7 @@ function BookingSeat() {
           </div>
         </div>
 
-        <div className="col-md-9">
+        <div className="col-md-8">
           <div class="h-100 p-4 bg-light border rounded-3 display-7">
           <h1 class=" lh-1 mb-3"> Seat Information</h1>
             <p>
