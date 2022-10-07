@@ -4,7 +4,7 @@
 }
 
 .unavailable {
-    background-color: #ccc !important;
+    background-color: rgb(197, 192, 192) !important;
 }
 
 .available {
@@ -33,6 +33,13 @@
     flex-wrap: wrap;
 }
 
+
+h1 {
+    
+    text-align: center;
+  
+  }
+
 .container {
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
@@ -42,14 +49,13 @@
     margin-right: auto;
     margin-left: auto;
     padding-top: 80px;
-    padding-bottom: 300px;
+    padding-bottom: 100px;
 }
 
 .leftside div,
 .rightside div  {
     width: 30px;
     height: 30px;
-    
     color: #fff;
     text-align: center;
     font-weight: bold;

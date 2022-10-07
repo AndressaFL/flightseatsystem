@@ -1,7 +1,6 @@
-import './SignIn.css'
-
-import React, { useState } from "react"
-import { Link, useNavigate } from 'react-router-dom'
+import "./SignIn.css";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignIn(props) {
   const [inputs, setInputs] = useState({});
@@ -10,27 +9,27 @@ function SignIn(props) {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setInputs(values => ({ ...values, [name]: value }))
-  }
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     navigate("/searchflight");
-  }
+  };
 
   return (
     <main className="form-signin">
       <div>
         <form onSubmit={handleSubmit}>
           <div>
-            <h3 >Sign In</h3>
+            <h3>Sign In</h3>
             <div className="text-center mb-3">
               Not registered yet?{" "}
               <Link to="../signup" className="form-group mt-3">
                 Sign Up
               </Link>
             </div>
-            <div >
+            <div>
               <label>Email address</label>
               <input
                 type="email"
@@ -61,7 +60,7 @@ function SignIn(props) {
         </form>
       </div>
     </main>
-  )
+  );
 }
 
-export default SignIn
+export default SignIn;
