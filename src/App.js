@@ -6,6 +6,8 @@ import SignIn from "./pages/SignIn";
 import SearchFlight from "./pages/SearchFlight";
 import SignUp from "./pages/SignUp";
 import BookingSeat from "./pages/BookingSeat";
+import ChangeSeat from "./pages/ChangeSeat";
+import Chat from "./pages/Chat";
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
            <Route path="signup" element={<SignUp />} />
            <Route path="searchflight" element={<SearchFlight />} />
            <Route path="bookseat" element={<BookingSeat />} />
+           <Route path="changeseat" element={<ChangeSeat />} />
+           <Route path="chat" element={<Chat />} />
            <Route path="*" element={<NoMatch />} />
          </Route>
        </Routes>

@@ -1,0 +1,94 @@
+.selected {
+    background-color: rgb(40, 40, 205) !important;
+
+}
+
+.unavailable {
+    background-color: rgb(197, 192, 192) !important;
+}
+
+.available {
+    background-color: green !important;
+}
+
+
+.bus {
+    display: flex;
+    justify-content: left;
+}
+
+.inner {
+    display: flex;
+    justify-content: space-between;
+    /*width: 1299px;*/
+}
+
+.rightside {
+    margin-left: 20px;
+}
+
+.leftside,
+.rightside {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+h1 {
+    
+    text-align: center;
+    
+  }
+
+
+
+.container {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+
+.leftside div,
+.rightside div  {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    vertical-align: middle;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-left: 10px;
+    cursor:pointer;
+    padding: auto;
+    /*border: 3px solid #d4a8ff;*/
+}
+
+/*.leftside div:hover,
+.rightside div:hover {
+    background-color: #d4a8ff;
+    border: 5px solid #d4a8ff;
+}
+
+
+.selected,
+.selected:hover {
+    background-color: #7ace7d !important;
+    border: 5px solid #37a262 !important;
+}*/
+
+#selectedseataDisplay{
+display: flex;
+flex-wrap: wrap;
+/*width: 200px;*/
+height: 200px;
+margin-top: 100px;
+}
+
