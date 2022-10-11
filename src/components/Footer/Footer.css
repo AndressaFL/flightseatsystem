@@ -1,6 +1,7 @@
 .bg-color {
     
     background-color: black;
+    align-content: center;
     
     
     
@@ -19,11 +20,13 @@
     
     
     
+    
    
 }
 .py-3 {
     padding-top: 1rem!important;
     padding-bottom: 1rem!important;
+    
     
 }
 .mt-auto {
@@ -33,6 +36,7 @@
 
 .footer {
     display: block;
+   
     
     
 }
