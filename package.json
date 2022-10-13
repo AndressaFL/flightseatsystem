@@ -9,7 +9,10 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
+    "client": "npm run start --prefix client",
     "server": "nodemon index.js",
-    "start": "nodemon index.js"
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start": "node index.js"
   }
+  
 }
