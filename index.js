@@ -16,6 +16,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.ATLAS_URI);
 
 app.use(bodyParser.json());
+app.use(require("./routes"));
 
 app.get(`/flights`, async (req, res) => {
   let flights = [
