@@ -1,6 +1,7 @@
 import "./SignIn.css";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import UserService from "../services/UserService";
 
 function SignIn(props) {
   const [inputs, setInputs] = useState({});
@@ -11,14 +12,32 @@ function SignIn(props) {
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
+  /*  const handleChange = (event) => {
+     name: = document.getElementBYID('').value,
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };*/
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    navigate("/searchflight");
+
+    var data = {
+      email: inputs.email,
+      password: inputs.password
+    };
+
+    UserService.signIn(data)
+    .then(response => {
+      console.log(response.data.email);
+      navigate("/searchflight");
+    })
+    .catch(e => {
+      console.log(e);
+    });
   };
 
   return (
-    <main className="form-signin">
+    <main className="form-signin " method="post">
       <div>
         <form onSubmit={handleSubmit}>
           <div>
@@ -33,6 +52,7 @@ function SignIn(props) {
               <label>Email address</label>
               <input
                 type="email"
+                id="email"
                 name="email"
                 className="form-control mt-1"
                 placeholder="Enter email"
@@ -45,6 +65,7 @@ function SignIn(props) {
               <input
                 type="password"
                 name="password"
+                id="password"
                 className="form-control mt-1"
                 placeholder="Enter password"
                 value={inputs.password || ""}

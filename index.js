@@ -1,31 +1,37 @@
-
-//When you use the MERN stack, you work with React to implement the presentation layer, Express and Node to make up the middle or application layer, and MongoDB to create the database layer.
-//command installs MongoDB database driver that allows your Node.js applications to connect to the database and work with data.
-
-//installs the web framework for Node.js
+const createError = require('http-errors');
 const express = require('express');
-const app = express();
-//installs a Node.js package that allows cross origin resource sharing.
+const cookieParser = require('cookie-parser');
 const cors = require("cors");
-//dotenv - installs the module that loads environment variables from a .env file into process.env file. This lets you separate configuration files from the code.
+
 require("dotenv").config({ path: "./config.env" });
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.ATLAS_URI);
+mongoose.connect(process.env.ATLAS_URI)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error(err));
 
-app.use(bodyParser.json());
-app.use(require("./routes"));
+const whitelist = ["http://localhost:3000"]
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error("Not allowed by CORS"))
+    }
+  },
+  credentials: true,
+}
 
-app.get(`/flights`, async (req, res) => {
-  let flights = [
-    {},
-    {},
-    {},
-  ]
-  return res.status(200).send(flights);
-});
+const app = express();
+
+app.use(cors(corsOptions))
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+const routes = require('./routes');
+app.use(routes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
@@ -37,11 +43,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const PORT = process.env.PORT || 5000;
-app.use(cors());
-app.use(express.json());
-
 
 app.listen(PORT, () => {
    // perform a database connection when server starts
   console.log(`app running on port ${PORT}`)
 });
+
+module.exports = app;

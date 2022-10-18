@@ -1,8 +1,10 @@
 const express = require("express");
-const userModel = require("./models");
-const app = express();
+const { signin } = require("./controllers/auth.controller");
+const router = express.Router();
+//const User = require("./db/models/user.model");
 
-app.post("/add_user", async (request, response) => {
+/*
+router.post("/signin", async (request, response) => {
     const user = new userModel(request.body);
   
     try {
@@ -12,14 +14,10 @@ app.post("/add_user", async (request, response) => {
       response.status(500).send(error);
     }
 });
+*/
 
-app.get("/users", async (request, response) => {
-    const users = await userModel.find({});
-  
-    try {
-      response.send(users);
-    } catch (error) {
-      response.status(500).send(error);
-    }
-  });
-  module.exports = app;
+router.post("/signin", (req, res) => {
+  signin(req, res)
+});
+
+module.exports = router;
