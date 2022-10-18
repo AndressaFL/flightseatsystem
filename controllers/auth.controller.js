@@ -19,7 +19,9 @@ exports.signup = (req, res) => {
       return;
     }
 
-    res.json("OK");
+    res.status(200).json({
+      message: "user created sucessfully"
+    })
   });
 };
 

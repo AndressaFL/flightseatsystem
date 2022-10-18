@@ -39,7 +39,7 @@ function SignIn(props) {
   return (
     <main className="form-signin " method="post">
       <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} class= "row g-3 needs-validation" novalidate>
           <div>
             <h3>Sign In</h3>
             <div className="text-center mb-3">
@@ -50,15 +50,17 @@ function SignIn(props) {
             </div>
             <div>
               <label>Email address</label>
+              
               <input
                 type="email"
-                id="email"
+                id="email" 
                 name="email"
                 className="form-control mt-1"
                 placeholder="Enter email"
                 value={inputs.email || ""}
                 onChange={handleChange}
-              />
+                required/>
+  
             </div>
             <div className="form-group mt-3">
               <label>Password</label>
@@ -79,6 +81,8 @@ function SignIn(props) {
             </div>
           </div>
         </form>
+
+
       </div>
     </main>
   );
