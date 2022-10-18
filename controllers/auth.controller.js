@@ -5,10 +5,12 @@ var bcrypt = require("bcryptjs");
 const User = require("../db/models/user.model");
 
 exports.signup = (req, res) => {
+  console.log("Adding new user: " + req.body.email);
   const user = new User({
     name: req.body.name,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
+  
   });
 
   user.save((err, user) => {
@@ -16,6 +18,8 @@ exports.signup = (req, res) => {
       res.status(500).send({ message: err });
       return;
     }
+
+    res.json("OK");
   });
 };
 

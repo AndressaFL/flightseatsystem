@@ -21,7 +21,7 @@ function SignIn(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    var data = {
+    const data = {
       email: inputs.email,
       password: inputs.password
     };
