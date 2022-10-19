@@ -13,12 +13,7 @@ function SignIn(props) {
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
-  /*  const handleChange = (event) => {
-     name: = document.getElementBYID('').value,
-    const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
-  };*/
-
+ 
   const handleSubmit = (event) => {
     event.preventDefault();
 

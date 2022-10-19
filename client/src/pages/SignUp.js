@@ -1,10 +1,10 @@
-import './SignUp.css'
+import "./SignUp.css";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UserService from "../services/UserService";
+import ShowError from "../components/ShowError/ShowError";
 
 function SignUp(props) {
-
   const [inputs, setInputs] = useState({});
   const navigate = useNavigate();
 
@@ -18,20 +18,39 @@ function SignUp(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    let errors = false;
+    if (!inputs.name) {
+      ShowError("Name is required!");
+      errors = true;
+    }
+
+    if (!inputs.email) {
+      ShowError("Email is required!");
+      errors = true;
+    }
+
+    if (!inputs.password) {
+      ShowError("Password is required!");
+      errors = true;
+    }
+
+    if (errors) {
+      return false;
+    }
     const data = {
       name: inputs.name,
       email: inputs.email,
-      password: inputs.password
+      password: inputs.password,
     };
 
     UserService.signUp(data)
-    .then(response => {
-      console.log(response.data.email);
-      navigate("/signin");
-    })
-    .catch(e => {
-      console.log(e);
-    });
+      .then((response) => {
+        console.log(response.data.email);
+        navigate("/signin");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
   return (
     <main className="form-signup" method="post">
@@ -41,9 +60,11 @@ function SignUp(props) {
             <h3>Sign Up</h3>
             <div className="text-center">
               Already registered?{" "}
-              <Link to="../signin" className="link-primary">Sign In</Link>
+              <Link to="../signin" className="link-primary">
+                Sign In
+              </Link>
             </div>
-            <div >
+            <div>
               <label>Full Name</label>
               <input
                 type="name"
@@ -77,7 +98,8 @@ function SignUp(props) {
                 className="form-control mt-1"
                 placeholder="Password"
                 value={inputs.password || ""}
-                onChange={handleChange}/>
+                onChange={handleChange}
+              />
             </div>
             <div className="d-grid gap-2 mt-3">
               <button type="submit" className="btn btn-primary">
@@ -88,7 +110,7 @@ function SignUp(props) {
         </form>
       </div>
     </main>
-  )
+  );
 }
 
-export default SignUp
+export default SignUp;

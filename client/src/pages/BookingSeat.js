@@ -47,10 +47,10 @@ function BookingSeat() {
   const handleSeatClick = (event) => {
     setSeats((previousState) => {
       return previousState.map((seat) => {
-        if (seat.id == event.target.id) {
-          if (seat.status == "available") {
+        if (seat.id === event.target.id) {
+          if (seat.status === "available") {
             return { ...seat, status: "selected" };
-          } else if (seat.status == "selected") {
+          } else if (seat.status === "selected") {
             return { ...seat, status: "available" };
           } else {
             return seat;
@@ -71,7 +71,7 @@ function BookingSeat() {
             <div className="inner">
               <div className="leftside">
                 {seats
-                  .filter((seat) => seat.position == "left")
+                  .filter((seat) => seat.position === "left")
                   .map((seat, index) => {
                     return (
                       <div
@@ -89,7 +89,7 @@ function BookingSeat() {
 
             <div className="rightside">
               {seats
-                .filter((seat) => seat.position == "right")
+                .filter((seat) => seat.position === "right")
                 .map((seat, index) => {
                   return (
                     <div
