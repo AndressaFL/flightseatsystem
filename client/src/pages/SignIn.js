@@ -2,6 +2,7 @@ import "./SignIn.css";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UserService from "../services/UserService";
+import ShowError from "../components/ShowError/ShowError";
 
 function SignIn(props) {
   const [inputs, setInputs] = useState({});
@@ -21,6 +22,21 @@ function SignIn(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    let errors = false;
+    if (!inputs.email) {
+      ShowError("Email is required!");
+      errors = true;
+    }
+
+    if (!inputs.password) {
+      ShowError("Password is required!");
+      errors = true;
+    }
+
+    if (errors) {
+      return false;
+    }
+
     const data = {
       email: inputs.email,
       password: inputs.password
@@ -28,7 +44,6 @@ function SignIn(props) {
 
     UserService.signIn(data)
     .then(response => {
-      console.log(response.data.email);
       navigate("/searchflight");
     })
     .catch(e => {
@@ -37,9 +52,9 @@ function SignIn(props) {
   };
 
   return (
-    <main className="form-signin " method="post">
+    <main className="form-signin" method="post">
       <div>
-        <form onSubmit={handleSubmit} class= "row g-3 needs-validation" novalidate>
+        <form onSubmit={handleSubmit} className="row g-3 needs-validation">
           <div>
             <h3>Sign In</h3>
             <div className="text-center mb-3">
@@ -59,7 +74,7 @@ function SignIn(props) {
                 placeholder="Enter email"
                 value={inputs.email || ""}
                 onChange={handleChange}
-                required/>
+                />
   
             </div>
             <div className="form-group mt-3">
