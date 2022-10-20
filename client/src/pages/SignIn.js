@@ -27,7 +27,7 @@ function SignIn(props) {
       ShowError("Password is required!");
       errors = true;
     }
-
+    
     if (errors) {
       return false;
     }
@@ -39,6 +39,9 @@ function SignIn(props) {
 
     UserService.signIn(data)
     .then(response => {
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+      //dispatch({ type: 'SET_USER', payload: res });
       navigate("/searchflight");
     })
     .catch(e => {
