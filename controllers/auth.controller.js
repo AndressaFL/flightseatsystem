@@ -60,7 +60,7 @@ exports.signin = (req, res) => {
     });
 
     console.log("token => " + token);
-    res.json({token: token, user: { name: user.name } });
+    res.json({user: { name: user.name, email: user.email, token: token } });
     
     /*
     const options = {

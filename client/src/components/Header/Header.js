@@ -1,6 +1,15 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom'
+import { UserContext } from '../../userContext';
 import './Header.css'
+
 function Header() {
+    const [state, dispatch] = useContext(UserContext);
+    let link = <Link className="me-3 py-2 text-dark text-decoration-none" to="signin">Sign In</Link>;
+    if (state.user) {
+        link = <Link className="me-3 py-2 text-dark text-decoration-none" to="signout">Sign Out</Link>;
+    }
+
     //JSX como o react le e tranforma elementos no DOM
     return (
         <header>
@@ -11,7 +20,7 @@ function Header() {
 
                 <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                     <Link className="me-3 py-2 text-dark text-decoration-none" to="support">Support</Link>
-                    <Link className="me-3 py-2 text-dark text-decoration-none" to="signin">Sign In</Link>
+                    {link}
                 </nav>
             </div>
         </header>

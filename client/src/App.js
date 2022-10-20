@@ -8,7 +8,7 @@ import SignUp from "./pages/SignUp";
 import BookingSeat from "./pages/BookingSeat";
 import ChangeSeat from "./pages/ChangeSeat";
 import Chat from "./pages/Chat";
-
+import SignOut from "./pages/SignOut";
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
            <Route path="support" element={<Support />} />
            <Route path="signin" element={<SignIn />} />
            <Route path="signup" element={<SignUp />} />
+           <Route path="signout" element={<SignOut />} />
            <Route path="searchflight" element={<SearchFlight />} />
            <Route path="bookseat" element={<BookingSeat />} />
            <Route path="changeseat" element={<ChangeSeat />} />

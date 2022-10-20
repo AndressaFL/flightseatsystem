@@ -1,19 +1,30 @@
 import "./SignIn.css";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UserService from "../services/UserService";
 import ShowError from "../components/ShowError/ShowError";
+import { UserContext } from "../userContext";
 
 function SignIn(props) {
+  const [state, dispatch] = useContext(UserContext);
   const [inputs, setInputs] = useState({});
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let currentUser = localStorage.getItem("user");
+    if (currentUser) {
+      dispatch({ type: "SET_USER", payload: JSON.parse(currentUser) });
+      navigate("/searchflight");
+    }
+  }, [dispatch]);
+
 
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
- 
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -27,26 +38,28 @@ function SignIn(props) {
       ShowError("Password is required!");
       errors = true;
     }
-    
+
     if (errors) {
       return false;
     }
 
     const data = {
       email: inputs.email,
-      password: inputs.password
+      password: inputs.password,
     };
 
     UserService.signIn(data)
-    .then(response => {
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-      //dispatch({ type: 'SET_USER', payload: res });
-      navigate("/searchflight");
-    })
-    .catch(e => {
-      console.log(e);
-    });
+      .then((response) => {
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        dispatch({ type: "SET_USER", payload: response.data.user });
+        navigate("/searchflight");
+      })
+      .catch((e) => {
+        ShowError("Email or password is invalid!");
+        dispatch({ type: "REMOVE_USER", payload: null });
+        //TODO remove user from localStorage!!!
+        console.log(e);
+      });
   };
 
   return (
@@ -63,17 +76,16 @@ function SignIn(props) {
             </div>
             <div>
               <label>Email address</label>
-              
+
               <input
                 type="email"
-                id="email" 
+                id="email"
                 name="email"
                 className="form-control mt-1"
                 placeholder="Enter email"
                 value={inputs.email || ""}
                 onChange={handleChange}
-                />
-  
+              />
             </div>
             <div className="form-group mt-3">
               <label>Password</label>
@@ -94,8 +106,6 @@ function SignIn(props) {
             </div>
           </div>
         </form>
-
-
       </div>
     </main>
   );
