@@ -6,8 +6,12 @@ import './Header.css'
 function Header() {
     const [state, dispatch] = useContext(UserContext);
     let link = <Link className="me-3 py-2 text-dark text-decoration-none" to="signin">Sign In</Link>;
+    
     if (state.user) {
-        link = <Link className="me-3 py-2 text-dark text-decoration-none" to="signout">Sign Out</Link>;
+        link = <>
+         <Link className="me-3 py-2 text-dark text-decoration-none" to="chat">Chat</Link>
+        <Link className="me-3 py-2 text-dark text-decoration-none" to="signout">Sign Out</Link>
+       </>;
     }
 
     //JSX como o react le e tranforma elementos no DOM
@@ -19,8 +23,9 @@ function Header() {
                 </Link>
 
                 <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                    <Link className="me-3 py-2 text-dark text-decoration-none" to="support">Support</Link>
+                    <Link className="me-3 py-2 text-dark text-decoration-none" to="home">Home</Link>
                     {link}
+                    
                 </nav>
             </div>
         </header>
