@@ -4,8 +4,6 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 const User = require("../db/models/user.model");
 
-
-
 exports.signup = (req, res) => {
   console.log("Adding new user: " + req.body.email);
   const user = new User({
@@ -35,6 +33,7 @@ exports.signin = (req, res) => {
   .exec((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
+      /*server*/
       return;
     }
 
@@ -42,16 +41,14 @@ exports.signin = (req, res) => {
       console.log("User not found: " + req.body.email);
       return res.status(404).send({ message: "User Not found." });
     }
-
-  
-
+    
     console.log("User found: " + user);
     var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
 
     if (!passwordIsValid) {
       return res.status(401).send({
         accessToken: null,
-        message: "Invalid Password!",
+        message: "Invalid login information!",
       });
     }
     const tokenExpiresIn = 86400; // 24 hours
