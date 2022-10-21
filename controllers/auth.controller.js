@@ -33,7 +33,7 @@ exports.signin = (req, res) => {
   .exec((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
-      /*server*/
+      
       return;
     }
 
