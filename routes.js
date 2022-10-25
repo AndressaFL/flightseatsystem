@@ -4,18 +4,11 @@ const { signup } = require("./controllers/auth.controller");
 const router = express.Router();
 //const User = require("./db/models/user.model");
 
-/*
-router.post("/signin", async (request, response) => {
-    const user = new userModel(request.body);
-  
-    try {
-      await user.save();
-      response.send(user);
-    } catch (error) {
-      response.status(500).send(error);
-    }
+
+router.get("/test", async (request, response) => {
+  response.send({"test": "123"});
 });
-*/
+
 
 router.post("/signin", (req, res) => {
   console.log("Seaching for user: " + req.body.email);
