@@ -10,15 +10,6 @@ function SignIn(props) {
   const [inputs, setInputs] = useState({});
   const navigate = useNavigate();
 
-  useEffect(() => {
-    let currentUser = localStorage.getItem("user");
-    if (currentUser) {
-      dispatch({ type: "SET_USER", payload: JSON.parse(currentUser) });
-      navigate("/searchflight");
-    }
-  }, [dispatch]);
-
-
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -50,14 +41,10 @@ function SignIn(props) {
 
     UserService.signIn(data)
       .then((response) => {
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        dispatch({ type: "SET_USER", payload: response.data.user });
         navigate("/searchflight");
       })
       .catch((e) => {
         ShowError("Email or password is invalid!");
-        dispatch({ type: "REMOVE_USER", payload: null });
-        //TODO remove user from localStorage!!!
         console.log(e);
       });
   };

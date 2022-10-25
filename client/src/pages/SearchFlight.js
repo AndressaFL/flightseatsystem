@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import UserService from "../services/UserService";
 import { UserContext } from "../userContext";
 import "./SearchFlight.css";
 
@@ -8,7 +9,9 @@ function SearchFlight() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!state || !state.user) {
+    const user = UserService.currentUser();
+    console.log(user);
+    if (!user) {
       navigate("/home");
     }
   });
