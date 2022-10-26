@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const FlightSchema = new mongoose.Schema({
   
-  flight: {
+  flightNumber: {
     type: String,
     required: [true, "Please provide a flight number!"],
     unique: false,
@@ -18,18 +18,19 @@ const FlightSchema = new mongoose.Schema({
     
   },
 
-  arriving: {
+  arrivingDate: {
     type: Date,
+    default: Date.now()
     
   },
 
-  departing: {
+  departingDate: {
     type: Date,
     default: Date.now()
     
   },
 });
 
-const Flight = mongoose.model("flight", FlightSchema);
+const Flight = mongoose.model("flights", FlightSchema);
 
-module.exports = flight;
+module.exports = Flight;

@@ -1,8 +1,29 @@
-const config = require("../config/auth.config");
-
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 const User = require("../db/models/user.model");
+
+exports.validatetoken = (req, res, next) => {
+  const token = req.cookies.access_token;
+
+  if (!token) {
+    console.log("token not found! :(");
+    return res.status(401).send({
+      message: "Not authorized to access this route",
+    });
+  }
+
+  // verify token
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  User.findById(decoded.id).exec((err, user) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+
+    req.user = user;
+    next();
+  });
+};
 
 exports.signup = (req, res) => {
   console.log("Adding new user: " + req.body.email);
@@ -24,6 +45,11 @@ exports.signup = (req, res) => {
   });
 };
 
+exports.signout = (req, res) => {
+  req.user = null;
+  res.clearCookie("access_token").send("OK");
+};
+
 exports.signin = (req, res) => {
   console.log("Seaching for user: " + req.body.email);
   User.findOne({
@@ -35,11 +61,9 @@ exports.signin = (req, res) => {
     }
 
     if (!user) {
-      console.log("User not found: " + req.body.email);
       return res.status(404).send({ message: "User Not found." });
     }
 
-    console.log("User found: " + user);
     var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
 
     if (!passwordIsValid) {
@@ -47,17 +71,19 @@ exports.signin = (req, res) => {
         message: "Invalid login information!",
       });
     }
+
     const tokenExpiresIn = 86400; // 24 hours
-    var token = jwt.sign({ id: user.id }, config.secret, {
+    var token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
       expiresIn: tokenExpiresIn,
     });
 
-    console.log("token => " + token);
     const options = {
       expires: new Date(Date.now() + tokenExpiresIn),
       httpOnly: true,
+      origin: process.env.FRONTEND_URL || "http://localhost:3000",
+      secure: process.env.NODE_ENV === "production",
     };
 
-    res.cookie("token", token, options).send("OK");
+    res.cookie("access_token", token, options).send("OK");
   });
 };

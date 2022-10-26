@@ -1,10 +1,17 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import UserService from "../../services/UserService";
 import { UserContext } from "../../userContext";
 import "./Header.css";
 
 function Header() {
   const [state, dispatch] = useContext(UserContext);
+  if (!state.user) {
+    UserService.currentUser().then((response) => {
+      dispatch({ type: "SET_USER", payload: response.data });
+    });
+  }
+
   let link = (
     <Link className="me-3 py-2 text-dark text-decoration-none text" to="signin">
       Sign In

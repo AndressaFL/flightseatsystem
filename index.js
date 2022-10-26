@@ -12,18 +12,7 @@ mongoose.connect(process.env.ATLAS_URI)
   .catch(err => console.error(err));
 
 const frontendUrl = process.env.FRONTEND_URL || "http://localhost:3000";
-const whitelist = [frontendUrl];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error("Not allowed by CORS"))
-    }
-  },
-  credentials: true,
-}
-
+const corsOptions = {credentials: true, origin: frontendUrl};
 const app = express();
 
 app.use(cors(corsOptions))
@@ -38,7 +27,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 
   const path = require('path');
-  app.get('*', (req,res) => {
+  app.get('*', (req, res) => {
       res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
   })
 }

@@ -1,5 +1,5 @@
 import "./SignIn.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UserService from "../services/UserService";
 import ShowError from "../components/ShowError/ShowError";
@@ -40,12 +40,14 @@ function SignIn(props) {
     };
 
     UserService.signIn(data)
-      .then((response) => {
+      .then(response => UserService.currentUser())
+      .then(response => {
+        dispatch({ type: "SET_USER", payload: response.data });
         navigate("/searchflight");
       })
-      .catch((e) => {
+      .catch((error) => {
         ShowError("Email or password is invalid!");
-        console.log(e);
+        console.error("Failed to authenticate a user.", error);
       });
   };
 

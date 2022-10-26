@@ -1,16 +1,20 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import UserService from "../services/UserService";
 import { UserContext } from "../userContext";
 
 function SignOut(props) {
-  const [state, dispatch] = useContext(UserContext);
   const navigate = useNavigate();
+  const [state, dispatch] = useContext(UserContext);
 
-  useEffect(() => {
-    dispatch({ type: "REMOVE_USER", payload: null });
-    localStorage.removeItem("user");
-    navigate("/home")
-  });
+  UserService.signOut()
+    .then((response) => {
+      dispatch({ type: "REMOVE_USER", payload: null });
+      navigate("/home");
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 }
 
 export default SignOut;

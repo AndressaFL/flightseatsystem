@@ -1,20 +1,36 @@
-import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import UserService from "../services/UserService";
-import { UserContext } from "../userContext";
+import React, { useState } from "react";
+import FlightService from "../services/FlightService";
 import "./SearchFlight.css";
+import { Link, useNavigate } from "react-router-dom";
+import ShowError from "../components/ShowError/ShowError";
 
 function SearchFlight() {
-  const [state, dispatch] = useContext(UserContext);
+  const [flightNumber, setFlightNumber] = useState({});
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const user = UserService.currentUser();
-    console.log(user);
-    if (!user) {
-      navigate("/home");
-    }
-  });
+  const handleChange = (event) => {
+    setFlightNumber(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("handleSubmit called");
+
+    FlightService.find(flightNumber)
+      .then((flight) => {
+        console.log("flight response is: ", flight)
+        navigate("/bookseat");
+      })
+      .catch((e) => {
+        console.log("Find flight failed: ", e);
+        if (e.response.status == 401) {
+          navigate("/signout");
+          return;
+        }
+
+        ShowError("Flight number not found!");
+      });
+  };
 
   //JSX como o react le e tranforma elementos no DOM
   return (
@@ -23,56 +39,36 @@ function SearchFlight() {
         <div id="search">
           <h1>SEARCH YOUR FLIGHT</h1>
         </div>
-        <section>
-          <div className="flight" id="flightbox">
-            <form id="flight-form">
-              <div id="flight-info">
-                <div className="info-box">
-                  <label form="adults">FLIGHT</label>
-                  <select name="adults" id="adults">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                  </select>
-                </div>
-
-                <div id="flight-dates">
-                  <div className="info-box">
-                    <label form="">FROM</label>
-                    <input type="text" id="leave-date" readOnly />
-                  </div>
-                </div>
-                <div id="flight-dates">
-                  <div className="info-box">
-                    <label form="">TO</label>
-                    <input type="text" id="leave-date" readOnly />
-                  </div>
-                </div>
-                <div id="flight-dates">
-                  <div className="info-box" id="arrive-box">
-                    <label form="">ARRIVING</label>
-                    <input type="text" id="dep-to" readOnly />
-                  </div>
-                </div>
-                <div id="flight-dates">
-                  <div className="info-box">
-                    <label form="">DEPARTING</label>
-                    <input type="text" id="leave-date" readOnly />
-                  </div>
-                </div>
+        <div className="container">
+          <form
+            className="row row-cols-lg-auto g-3 align-items-center"
+            onSubmit={handleSubmit}
+          >
+            <div className="col-12">
+              <label className="visually-hidden" id="flight_number">
+                Flight Number
+              </label>
+              <div className="input-group">
+                <div className="input-group-text">Flight Number: </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="flight_number"
+                  placeholder=""
+                  onChange={handleChange}
+                />
               </div>
-              <div id="flight-search">
-                <div className="info-box">
-                  <input type="submit" id="search-flight" value="SEARCH" />
-                </div>
-              </div>
-            </form>
-          </div>
-        </section>
+            </div>
+            <div className="col-12">
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div id="confirm"></div>
     </>
   );
 }
+
 export default SearchFlight;
