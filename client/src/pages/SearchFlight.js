@@ -1,12 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FlightService from "../services/FlightService";
 import "./SearchFlight.css";
 import { Link, useNavigate } from "react-router-dom";
 import ShowError from "../components/ShowError/ShowError";
 
 function SearchFlight() {
+  const [flights, setFlights] = useState([]);
   const [flightNumber, setFlightNumber] = useState({});
   const navigate = useNavigate();
+
+  useEffect(() => {
+    FlightService.find_all()
+      .then((response) => {
+        setFlights(response.data);
+      })
+      .catch((e) => {
+        console.log("Find flights failed: ", e);
+        if (e.response.status === 401) {
+          navigate("/signout");
+          return;
+        }
+      });
+  }, []);
 
   const handleChange = (event) => {
     setFlightNumber(event.target.value);
@@ -18,12 +33,12 @@ function SearchFlight() {
 
     FlightService.find(flightNumber)
       .then((flight) => {
-        console.log("flight response is: ", flight)
+        console.log("flight response is: ", flight);
         navigate("/bookseat");
       })
       .catch((e) => {
         console.log("Find flight failed: ", e);
-        if (e.response.status == 401) {
+        if (e.response.status === 401) {
           navigate("/signout");
           return;
         }
@@ -61,10 +76,14 @@ function SearchFlight() {
             </div>
             <div className="col-12">
               <button type="submit" className="btn btn-primary">
-                Submit
+                Choose your seat
               </button>
             </div>
           </form>
+          <div> Flights: </div>
+          <ol>{  flights.map((flight) => (
+            <li key={flight.flightNumber}> {flight.flightNumber}{(' - From: ')}{flight.from}{(' To: ')}{flight.to}</li>
+          ))}</ol>
         </div>
       </div>
     </>

@@ -16,3 +16,18 @@ exports.find_flight = (req, res) => {
     return res.json(flight);
   });
 };
+
+exports.find_flights = (req, res) => {
+  Flight.find().exec((err, flights) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+
+    if (!flights) {
+      return res.json([]);
+    }
+
+    return res.json(flights);
+  });
+};

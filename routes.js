@@ -1,6 +1,6 @@
 const express = require("express");
 const { signin, signup, signout, validatetoken } = require("./controllers/auth.controller");
-const { find_flight } = require("./controllers/flight.controller");
+const { find_flight, find_flights } = require("./controllers/flight.controller");
 const { current_user } = require("./controllers/user.controller");
 const router = express.Router();
 
@@ -23,6 +23,10 @@ router.get("/current_user", validatetoken, (req, res) => {
 
 router.get("/flight", validatetoken, (req, res) => {
   find_flight(req, res);
+});
+
+router.get("/flights", validatetoken, (req, res) => {
+  find_flights(req, res);
 });
 
 router.get("/bookseat", validatetoken, (req, res) => {
