@@ -81,7 +81,7 @@ exports.signin = (req, res) => {
       expires: new Date(Date.now() + tokenExpiresIn),
       httpOnly: true,
       origin: process.env.FRONTEND_URL || "http://localhost:3000",
-      secure: process.env.NODE_ENV === "production",
+      //secure: process.env.NODE_ENV === "production",
     };
 
     res.cookie("access_token", token, options).send("OK");

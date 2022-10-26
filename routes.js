@@ -5,7 +5,6 @@ const { current_user } = require("./controllers/user.controller");
 const router = express.Router();
 
 router.post("/signin", (req, res) => {
-  console.log("Seaching for user: " + req.body.email);
   signin(req, res);
 });
 
