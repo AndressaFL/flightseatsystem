@@ -9,6 +9,11 @@ function SearchFlight() {
   const [flightNumber, setFlightNumber] = useState({});
   const navigate = useNavigate();
 
+ const handleOnClick = (flightNumber) => {
+    navigate("/bookseat");
+  }
+
+
   useEffect(() => {
     FlightService.find_all()
       .then((response) => {
@@ -54,38 +59,33 @@ function SearchFlight() {
         <div id="search">
           <h1>SEARCH YOUR FLIGHT</h1>
         </div>
-        <div className="container">
-          <form
-            className="row row-cols-lg-auto g-3 align-items-center"
-            onSubmit={handleSubmit}
-          >
-            <div className="col-12">
-              <label className="visually-hidden" id="flight_number">
-                Flight Number
-              </label>
-              <div className="input-group">
-                <div className="input-group-text">Flight Number: </div>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="flight_number"
-                  placeholder=""
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <div className="col-12">
-              <button type="submit" className="btn btn-primary">
+        
+          <div className="container">
+            <h1>Flights</h1>
+            <table className="rwd-table center">
+              <tr>
+                <th>Flights</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Departing Time</th>
+                <th>Arriving Time</th>
+                <th></th>
+              </tr>
+              {flights.map((flight) => (
+                <tr>
+                  <td key={flightNumber}data-th="Flight Number">{flight.flightNumber}</td>
+                  <td data-th="From">{flight.from}</td>
+                  <td data-th="To">{flight.to}</td>
+                  <td data-th="Departing Time">{flight.departingDate}</td>
+                  <td data-th="Arriving Time">{flight.arrivingDate}</td>
+                  <td data-th="Choose your Seat"><button onClick={() => handleOnClick(flight.flightNumber)} className="btn btn-primary" >
                 Choose your seat
-              </button>
-            </div>
-          </form>
-          <div> Flights: </div>
-          <ol>{  flights.map((flight) => (
-            <li key={flight.flightNumber}> {flight.flightNumber}{(' - From: ')}{flight.from}{(' To: ')}{flight.to}</li>
-          ))}</ol>
+              </button></td>
+                </tr>
+              ))}
+            </table>
+          </div>
         </div>
-      </div>
     </>
   );
 }

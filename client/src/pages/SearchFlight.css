@@ -1,13 +1,7 @@
 * {
     box-sizing: border-box;
   }
-  body {
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;;
-  }
+ 
   
   #search-form {
     border: 1px solid rgb(77, 74, 74);
@@ -138,24 +132,7 @@
   .normal {
     color: rgba(0,0,0,.8)
   }
-  
-  #confirm {
-    width: 500px;
-    padding: 20px;
-    border: 5px solid #55AF3A;
-    margin: 20px auto;
-    opacity: 0;
-  }
-  #confirm h3 {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-  }
-  #confirm p {
-    padding: 10px;
-  }
-  #confirm strong {
-    font-weight: 600;
-  }
+ 
 
  
 .row {
@@ -168,3 +145,74 @@
     margin-left: calc(-.5 * var(--bs-gutter-x));
     justify-content: center;
 }
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+  
+  
+  th, td {
+    text-align: left;
+    
+    @media (min-width: $breakpoint-alpha) {
+      display: table-cell;
+      padding: .25em .5em;
+      
+      &:first-child {
+        padding-left: 0;
+      }
+      
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+
+  }
+  
+  
+.body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #eee;
+}
+
+
+h1 {
+  font-weight: normal;
+  letter-spacing: -1px;
+  color: #34495E;
+  padding-bottom: 20px;
+  font-size: 30px;;
+}
+
+.rwd-table {
+  background: #00008B;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  
+  
+}
+  th, td {
+    margin: .5em 1em;
+    @media (min-width: $breakpoint-alpha) { 
+      padding: 1em !important; 
+    }
+  }
+  th, td:before {
+    color: white;
+    text-align: center;
+  }
+  .btn {
+
+    background-color:#0000FF;
+    border-radius: 8px;
+
+  }
+ 
+  
