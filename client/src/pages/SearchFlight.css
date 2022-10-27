@@ -191,8 +191,8 @@ h1 {
 }
 
 .rwd-table {
-  background: #00008B;
-  color: #fff;
+  background:#dcdcdc;
+  color: #696969;
   border-radius: .4em;
   overflow: hidden;
   
@@ -206,6 +206,7 @@ h1 {
   }
   th, td:before {
     color: white;
+    background-color:	#4682b4;
     text-align: center;
   }
   .btn {
