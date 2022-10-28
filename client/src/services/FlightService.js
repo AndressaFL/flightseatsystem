@@ -8,6 +8,11 @@ class FlightService {
   find_all() {
     return http.get("flights")
   }
+
+  book_seat(flightNumber, seatNumber) {
+    const data = {"flightNumber": flightNumber, "seatNumber": seatNumber};
+    return http.post("/bookseat", data)
+  }
 }
 
 export default new FlightService();

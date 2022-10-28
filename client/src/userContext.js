@@ -4,7 +4,7 @@ import { createContext, useReducer } from "react";
 
 export const InitialUserState = {
     name: null,
-    email: null
+    id: null
 };
 
 export const UserContext = createContext(InitialUserState);

@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import FlightService from "../services/FlightService";
 import "./SearchFlight.css";
-import { Link, useNavigate } from "react-router-dom";
-import ShowError from "../components/ShowError/ShowError";
+import { useNavigate } from "react-router-dom";
 
 function SearchFlight() {
   const [flights, setFlights] = useState([]);
-  const [flightNumber, setFlightNumber] = useState({});
   const navigate = useNavigate();
 
  const handleOnClick = (flightNumber) => {
-    navigate("/bookseat");
+    navigate(`/bookseat/${flightNumber}`);
   }
-
 
   useEffect(() => {
     FlightService.find_all()
@@ -27,30 +24,6 @@ function SearchFlight() {
         }
       });
   }, []);
-
-  const handleChange = (event) => {
-    setFlightNumber(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("handleSubmit called");
-
-    FlightService.find(flightNumber)
-      .then((flight) => {
-        console.log("flight response is: ", flight);
-        navigate("/bookseat");
-      })
-      .catch((e) => {
-        console.log("Find flight failed: ", e);
-        if (e.response.status === 401) {
-          navigate("/signout");
-          return;
-        }
-
-        ShowError("Flight number not found!");
-      });
-  };
 
   //JSX como o react le e tranforma elementos no DOM
   return (
@@ -73,7 +46,7 @@ function SearchFlight() {
               </tr>
               {flights.map((flight) => (
                 <tr>
-                  <td key={flightNumber}data-th="Flight Number">{flight.flightNumber}</td>
+                  <td key={flight.flightNumber}data-th="Flight Number">{flight.flightNumber}</td>
                   <td data-th="From">{flight.from}</td>
                   <td data-th="To">{flight.to}</td>
                   <td data-th="Departing Time">{flight.departingDate}</td>
