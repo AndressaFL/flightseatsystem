@@ -9,6 +9,7 @@
     position: relative;
     margin-top: 100px;
     margin-bottom: 339px;
+    display: block;
   
   }
   
@@ -122,6 +123,7 @@
   table {
     border: 1px solid #DBDBDB;
     background: #F4F4F4;
+    display: block;
   }
   table td {
     border: 1px solid #DBDBDB;

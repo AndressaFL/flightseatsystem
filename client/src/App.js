@@ -6,7 +6,6 @@ import SignIn from "./pages/SignIn";
 import SearchFlight from "./pages/SearchFlight";
 import SignUp from "./pages/SignUp";
 import BookingSeat from "./pages/BookingSeat";
-import ChangeSeat from "./pages/ChangeSeat";
 import Chat from "./pages/Chat";
 import SignOut from "./pages/SignOut";
 
@@ -23,7 +22,6 @@ function App() {
            <Route path="signout" element={<SignOut />} />
            <Route path="searchflight" element={<SearchFlight />} />
            <Route path="bookseat/:flightNumber" element={<BookingSeat />} />
-           <Route path="changeseat" element={<ChangeSeat />} />
            <Route path="chat" element={<Chat />} />
            <Route path="*" element={<NoMatch />} />
          </Route>

@@ -47,8 +47,11 @@ exports.book_seat = (req, res) => {
       return res.status(404).send("not found");
     }
 
+    const previousSeat = flight.seats.find((seat) => seat.passenger && seat.passenger.user_id.toString() === user.id && seat.status === "unavailable");
     const selectedSeat = flight.seats.find((seat) => seat.number === seatNumber);
     console.log(`Got seat: `, selectedSeat);
+    console.log("Previous seat: ", previousSeat);
+    
     if (!selectedSeat || selectedSeat.status !== "available") {
       return res.status(400).send({ message: "seat unavailable" });
     }
@@ -58,6 +61,9 @@ exports.book_seat = (req, res) => {
         console.log("changing seat number ", seatNumber);
         seat.status = "unavailable";
         seat.passenger = { "user_id": user.id };
+      } else if (previousSeat && previousSeat.number === seat.number) {
+        seat.status = "available"
+        seat.passenger = null;
       }
 
       return seat;

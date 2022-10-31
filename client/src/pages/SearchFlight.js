@@ -49,6 +49,7 @@ function SearchFlight() {
         <div className="container">
           <h1>Flights</h1>
           <table className="rwd-table center">
+            <thead>
             <tr>
               <th>Flights</th>
               <th>From</th>
@@ -57,11 +58,11 @@ function SearchFlight() {
               <th>Arriving Time</th>
               <th></th>
             </tr>
+            </thead>
+            <tbody>
             {flights.map((flight) => (
-                <tr>
-                <td key={flight.flightNumber} data-th="Flight Number">
-                  {flight.flightNumber}
-                </td>
+                <tr key={flight.flightNumber}>
+                <td data-th="Flight Number">{flight.flightNumber}</td>
                 <td data-th="From">{flight.from}</td>
                 <td data-th="To">{flight.to}</td>
                 <td data-th="Departing Time">{formatDate(flight.departingDate)}</td>
@@ -76,6 +77,7 @@ function SearchFlight() {
                 </td>
               </tr>
             ))}
+            </tbody>
           </table>
         </div>
       </div>

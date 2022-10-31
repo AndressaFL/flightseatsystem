@@ -18,7 +18,13 @@ function BookingSeat() {
     FlightService.find(flightNumber)
       .then((response) => {
         console.log(response.data);
-        const s = response.data.seats;
+        const s = response.data.seats.map(seat => {
+          if (seat.status === "unavailable" && seat.passenger.user_id === state.user.id) {
+            seat.status = "selected";
+          }
+          return seat;
+        });
+
         setFlight(response.data);
         setSeats(s);
       })
@@ -127,8 +133,8 @@ function BookingSeat() {
                 <li>
                   Seat Selected:
                   {seats
-                    .filter((seat) => seat.status === "selected")
-                    .map((seat, index) => ` ${seat.number}`)}
+                    .filter((seat) => seat.status === "selected" || (seat.status === "unavailable" && seat.passenger.user_id === state.user.id))
+                    .map((seat, index) => `${seat.number}`)}
                 </li>
               </ol>
             </div>
