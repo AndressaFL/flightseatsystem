@@ -63,6 +63,10 @@ function BookingSeat() {
     });
   };
 
+  const handleCancel = () => {
+    navigate("/searchflight");
+  };
+
   const confirmSeatSelection = (event) => {
     console.log("confirmSeatSelection called.");
     const selectedSeat = seats.find((seat) => seat.status === "selected");
@@ -155,7 +159,8 @@ function BookingSeat() {
               </button>
               <button
                 type="button"
-                className="btn btn-outline-primary btn-lg px-4 color: white"
+                className="btn btn-primary btn-lg px-4 color: white"
+                onClick={()=> handleCancel()}
               >
                 Cancel
               </button>
