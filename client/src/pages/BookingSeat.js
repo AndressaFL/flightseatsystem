@@ -135,7 +135,7 @@ function BookingSeat() {
           <div className="h-100 p-4 bg-light border rounded-3 display-7">
             <h1 className="display-6 lh-1 mb-3 "> Seat Information</h1>
             <div className="lead">
-              <ol>
+              <ul>
                 <li>Passenger's name: {state.user.name}</li>
                 <li>Flight number: {flight.flightNumber}</li>
                 <li>From: {flight.from}</li>
@@ -146,7 +146,7 @@ function BookingSeat() {
                     .filter((seat) => seat.status === "selected" || (seat.status === "unavailable" && seat.passenger.user_id === state.user.id))
                     .map((seat, index) => `${seat.number}`)}
                 </li>
-              </ol>
+              </ul>
             </div>
 
             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
