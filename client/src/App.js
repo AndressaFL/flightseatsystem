@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
-import Support from "./pages/Support";
 import Template from "./pages/Template";
 import SignIn from "./pages/SignIn";
 import SearchFlight from "./pages/SearchFlight";
@@ -16,7 +15,6 @@ function App() {
          <Route path="/" element={<Template />}>
            <Route index element={<Home />} />
            <Route path="home" element={<Home />} />
-           <Route path="support" element={<Support />} />
            <Route path="signin" element={<SignIn />} />
            <Route path="signup" element={<SignUp />} />
            <Route path="signout" element={<SignOut />} />

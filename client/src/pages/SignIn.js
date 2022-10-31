@@ -6,16 +6,18 @@ import ShowError from "../components/ShowError/ShowError";
 import { UserContext } from "../userContext";
 
 function SignIn(props) {
+  /*keep user's inf */
   const [state, dispatch] = useContext(UserContext);
   const [inputs, setInputs] = useState({});
   const navigate = useNavigate();
 
+/*keep inf login and password*/
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
-
+/*function button loggin*/
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -38,7 +40,7 @@ function SignIn(props) {
       email: inputs.email,
       password: inputs.password,
     };
-
+/*requesting for the backend*/
     UserService.signIn(data)
       .then(response => UserService.currentUser())
       .then(response => {

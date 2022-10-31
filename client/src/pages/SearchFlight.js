@@ -8,8 +8,6 @@ function SearchFlight() {
   const [flights, setFlights] = useState([]);
   const navigate = useNavigate();
 
-  /*new Date().toLocaleString("en-US", {timeZone: "America/New_York"});*/
-
   const formatDate = (date) => {
     console.log("got date ", date);
     const formattedDate = new Date(date).toLocaleString("en-US", {timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone});
@@ -24,9 +22,8 @@ function SearchFlight() {
   useEffect(() => {
     FlightService.find_all()
       .then((response) => {
+        /*save flight inf*/
         setFlights(response.data);
-        
-       
       })
       .catch((e) => {
         console.log("Find flights failed: ", e);

@@ -7,11 +7,16 @@ import ShowError from "../components/ShowError/ShowError";
 
 function BookingSeat() {
   const [seats, setSeats] = useState([]);
-  const [flight, setFlight] = useState({});
+  const [flight, setFlight] = useState({});/*object*/
   const [state, dispatch] = useContext(UserContext);
   const navigate = useNavigate();
 
   const { flightNumber } = useParams();
+  /*
+  request param value
+  Example: http://localhost:3000/bookseat/5567
+  flightNumber = 5567
+  */
 
   useEffect(() => {
     console.log("getting current flight!");
@@ -25,8 +30,8 @@ function BookingSeat() {
           return seat;
         });
 
-        setFlight(response.data);
-        setSeats(s);
+        setFlight(response.data);/*save the flight*/
+        setSeats(s);/*all seats*/
       })
       .catch((e) => {
         console.log("Find flight failed: ", e);
@@ -62,6 +67,7 @@ function BookingSeat() {
     console.log("confirmSeatSelection called.");
     const selectedSeat = seats.find((seat) => seat.status === "selected");
     FlightService.book_seat(flight.flightNumber, selectedSeat.number)
+    /*Save both in the backend8*/
     .then((response) => {
       console.log(response.data);
       alert("Seat reserved");

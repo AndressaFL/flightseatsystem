@@ -6,7 +6,7 @@ import { UserContext } from "../userContext";
 function SignOut(props) {
   const navigate = useNavigate();
   const [state, dispatch] = useContext(UserContext);
-
+/*userReducer*/
   UserService.signOut()
     .then((response) => {
       dispatch({ type: "REMOVE_USER", payload: null });
