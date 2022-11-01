@@ -1,104 +1,86 @@
 import "./Chat.css";
-function Chat() {
-  //JSX como o react le e tranforma elementos no DOM
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { UserContext } from "../userContext";
+
+function Chat({socket}) {
+
+  const [state, dispatch] = useContext(UserContext);
+  const [currentMessage, setCurrentMessage] = useState("");
+  const [messageList, setMessageList] = useState([]);
+
+  
+
+  const { flightNumber } = useParams();
+  socket.emit("join_room", flightNumber);
+
+  const sendMessage = async () => {
+    if (currentMessage !== "") {
+      const messageData = {
+        room: flightNumber,
+        author: state.user.name,
+        message: currentMessage,
+        time:
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
+      };
+
+      await socket.emit("send_message", messageData);
+      setMessageList((list) => [...list, messageData]);
+      setCurrentMessage("");
+    }
+  };
+
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      setMessageList((list) => [...list, data]);
+    });
+  }, [socket]);
+
   return (
-    <>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <div className="box box-primary direct-chat direct-chat-primary">
-              <div className="box-header with-border">
-                <h3 className="box-title">Direct Chat</h3>
-              </div>
-             <div className="box-body">
-                <div className="direct-chat-messages">
-                  <div className="direct-chat-msg">
-                    <div className="direct-chat-info clearfix">
-                      <span className="direct-chat-name pull-left">
-                        Alexander Pierce
-                      </span>
-                      <span className="direct-chat-timestamp pull-right">
-                        <br/>23 Jan 2:00 pm
-                      </span>
-                    </div>
-                    <div className="direct-chat-text">
-                      Is this template really for free? That's unbelievable!
-                    </div>
+    <div className="chat-window">
+      <div className="chat-header">
+        <p>Live Chat</p>
+      </div>
+      <div className="chat-body">
+        <div id="scroll-to-bottom" className="message-container">
+          {messageList.map((messageContent) => {
+            return (
+              <div
+                className="message"
+                id={state.user.name === messageContent.author ? "you" : "other"}
+              >
+                <div>
+                  <div className="message-content">
+                    <p>{messageContent.message}</p>
                   </div>
-                 <div className="direct-chat-msg right">
-                    <div className="direct-chat-info-right clearfix">
-                      <span className="direct-chat-name pull-right">
-                        Sarah Bullock 
-                      </span>
-                      <span className="direct-chat-timestamp pull-right">
-                        <br/>23 Jan 2:05 pm
-                      </span>
-                    </div>
-                   {/*  <img
-                      className="direct-chat-img"
-                      src="https://bootdey.com/img/Content/user_2.jpg"
-                      alt="Message User Image"
-                    /> */}
-                    <div className="direct-chat-text">
-                      You better believe it!
-                    </div>
+                  <div className="message-meta">
+                    <p id="time">{messageContent.time}</p>
+                    <p id="author">{messageContent.author}</p>
                   </div>
                 </div>
-                  <div className="direct-chat-contacts">
-                  <ul className="contacts-list">
-                    <li>
-                      <a href="#">
-                        <img
-                          className="contacts-list-img"
-                          src="https://bootdey.com/img/Content/user_1.jpg"
-                        />
-                          <div className="contacts-list-info">
-                          <span className="contacts-list-name">
-                            Count Dracula
-                            <small className="contacts-list-date pull-right">
-                              2/28/2015
-                            </small>
-                          </span>
-                          <span className="contacts-list-msg">
-                            How have you been? I was...
-                          </span>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
               </div>
-                <div className="box-footer">
-                <form action="#" method="post">
-                  <div className="input-group">
-                    <input
-                      type="text"
-                      name="message"
-                      placeholder="Type Message ..."
-                      className="form-control"
-                    />
-                    <span className="input-group-btn">
-                      <button
-                        type="submit"
-                        className="btn btn-primary btn-flat px-4 me-sm-3"
-                      >
-                        Send
-                      </button>
-                      <button
-                        type="submit"
-                        className="btn btn-primary btn-flat px-4"
-                      >
-                        Sair
-                      </button>
-                      </span>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
-    </>
+      <div className="chat-footer">
+        <input
+          type="text"
+          value={currentMessage}
+          placeholder="Hey..."
+          onChange={(event) => {
+            setCurrentMessage(event.target.value);
+          }}
+          onKeyPress={(event) => {
+            event.key === "Enter" && sendMessage();
+          }}
+        />
+        <button onClick={sendMessage}>&#9658;</button>
+      </div>
+    </div>
   );
 }
+
 export default Chat;

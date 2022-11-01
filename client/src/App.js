@@ -6,7 +6,10 @@ import SearchFlight from "./pages/SearchFlight";
 import SignUp from "./pages/SignUp";
 import BookingSeat from "./pages/BookingSeat";
 import Chat from "./pages/Chat";
+import io from "socket.io-client";
 import SignOut from "./pages/SignOut";
+
+const socket = io.connect(process.env.REACT_APP_BACKEND_URL || "http://localhost:5000");
 
 function App() {
   return (
@@ -20,7 +23,7 @@ function App() {
            <Route path="signout" element={<SignOut />} />
            <Route path="searchflight" element={<SearchFlight />} />
            <Route path="bookseat/:flightNumber" element={<BookingSeat />} />
-           <Route path="chat" element={<Chat />} />
+           <Route path="chat/:flightNumber" element={<Chat socket={socket} />} />
            <Route path="*" element={<NoMatch />} />
          </Route>
        </Routes>

@@ -175,18 +175,34 @@ function BookingSeat() {
               src="/images/background.jpeg"
               className="d-block mx-lg-auto img-fluid"
               alt="Bootstrap Themes"
-              width="700"
-              height="500"
+              width="100%"
+              height="100%"
               loading="lazy"
             />
           </div>
           <div className="col-lg-6">
             <h1 className="display-6 lh-1 mb-3">Seat Guide</h1>
             <p className="lead">
-              Quickly design and customize responsive mobile-first sites with
-              Bootstrap, the world’s most popular front-end open source toolkit,
-              featuring Sass variables and mixins, responsive grid system,
-              extensive prebuilt components, and powerful JavaScript plugins.
+
+            <ul class="showcase">
+      <li>
+        <div class="seat"></div>
+        <small>Available</small>
+      </li>
+      <li>
+        <div class="seat selected"></div>
+        <small>Selected</small>
+      </li>
+      <li>
+        <div class="seat occupied"></div>
+        <small>Occupied</small>
+      </li>
+    </ul>
+<ul>
+    Advance standard seat selection charges are refundable only in the following circumstances:
+<li>you are moved to a seat other than the one you selected due to an involuntary schedule or airport change (e.g., flight disruption, cancellation). If you are moved from your seat for such a reason, you may request a refund of your seat charges.</li>
+<li>you decide not to travel on a flight for which you purchased advance standard seat selection. The value of your advance standard seat selection charge will be retained and can be applied towards seat selection on a future Air Canada itinerary, provided you do not cancel your original booking.</li>
+</ul>
             </p>
           </div>
         </div>

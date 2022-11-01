@@ -3,6 +3,10 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require("cors");
 
+/**/
+const { Server } = require("socket.io");
+/**/
+
 require("dotenv").config({ path: "./config.env" });
 const mongoose = require('mongoose');
 
@@ -34,10 +38,37 @@ if (process.env.NODE_ENV === 'production') {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+const httpServer = app.listen(PORT, () => {
    // perform a database connection when server starts
   console.log(`app running on port ${PORT}`)
 });
 
+/**/
+const io = new Server(httpServer, {
+  cors: {
+    origin: frontendUrl,
+    methods: ["GET", "POST"],
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log(`User Connected: ${socket.id}`);
+
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  });
+
+  socket.on("send_message", (data) => {
+    socket.to(data.room).emit("receive_message", data);
+  });
+
+  socket.on("disconnect", () => {1
+    console.log("User Disconnected", socket.id);
+  });
+});
+
+
+/**/
 
 module.exports = app;

@@ -96,3 +96,38 @@ margin-top: 100px;
     /* background-color: #0000FF; */
     border-radius: 8px;
 }
+.showcase {
+    background: rgb(122 117 117);
+    padding: 10px 20px;
+    color: white;
+    border-radius: 10px;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+  }
+  .showcase li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+  }
+  .seat {
+    background-color: green;
+    width: 15px;
+    height: 12px;
+    margin: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .seat.selected {
+    background-color: rgb(40, 40, 205);
+  }
+  
+  .seat.occupied {
+    background-color:rgb(197, 192, 192);
+  }  
+  img, svg {
+    vertical-align: middle;
+    border-radius: 10px;
+}
