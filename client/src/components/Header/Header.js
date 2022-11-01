@@ -2,16 +2,18 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import UserService from "../../services/UserService";
 import { UserContext } from "../../userContext";
+import { useNavigate, useParams } from "react-router-dom";
 import "./Header.css";
 
 function Header() {
   const [state, dispatch] = useContext(UserContext);
+  const navigate = useNavigate();
+
   if (!state.user) {
     UserService.currentUser().then((response) => {
       dispatch({ type: "SET_USER", payload: response.data });
     });
   }
-
   let link = (
     <Link className="me-3 py-2 text-dark text-decoration-none text" to="signin">
       Sign In
@@ -26,9 +28,6 @@ function Header() {
           to="searchflight"
         >
           Search Flight
-        </Link>
-        <Link className="me-3 py-2 text-dark text-decoration-none" to="chat">
-          Chat
         </Link>
         <Link
           className="me-3 py-2 text-dark text-decoration-none text"

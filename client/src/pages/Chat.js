@@ -3,13 +3,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../userContext";
 
-function Chat({socket}) {
-
+function Chat({ socket }) {
   const [state, dispatch] = useContext(UserContext);
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-
-  
 
   const { flightNumber } = useParams();
   socket.emit("join_room", flightNumber);
@@ -39,7 +36,7 @@ function Chat({socket}) {
   }, [socket]);
 
   return (
-    <div className="chat-window">
+    <div className="chat-window ">
       <div className="chat-header">
         <p>Live Chat</p>
       </div>
@@ -66,18 +63,20 @@ function Chat({socket}) {
         </div>
       </div>
       <div className="chat-footer">
-        <input
-          type="text"
-          value={currentMessage}
-          placeholder="Hey..."
-          onChange={(event) => {
-            setCurrentMessage(event.target.value);
-          }}
-          onKeyPress={(event) => {
-            event.key === "Enter" && sendMessage();
-          }}
-        />
-        <button onClick={sendMessage}>&#9658;</button>
+        <div class="input-group">
+          <input
+            type="text"
+            value={currentMessage}
+            placeholder="Hey..."
+            onChange={(event) => {
+              setCurrentMessage(event.target.value);
+            }}
+            onKeyPress={(event) => {
+              event.key === "Enter" && sendMessage();
+            }}
+          />
+          <button onClick={sendMessage}>Send</button>
+        </div>
       </div>
     </div>
   );

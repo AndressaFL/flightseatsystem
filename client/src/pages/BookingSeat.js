@@ -1,17 +1,21 @@
 import "./BookingSeat.css";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import FlightService from "../services/FlightService";
 import { UserContext } from "../userContext";
 import ShowError from "../components/ShowError/ShowError";
 
 function BookingSeat() {
   const [seats, setSeats] = useState([]);
-  const [flight, setFlight] = useState({});/*object*/
+  const [flight, setFlight] = useState({}); /*object*/
   const [state, dispatch] = useContext(UserContext);
   const navigate = useNavigate();
 
   const { flightNumber } = useParams();
+
+  const handleChat = () => {
+    navigate("/chat/:flightNumber");
+  };
   /*
   request param value
   Example: http://localhost:3000/bookseat/5567
@@ -23,15 +27,18 @@ function BookingSeat() {
     FlightService.find(flightNumber)
       .then((response) => {
         console.log(response.data);
-        const s = response.data.seats.map(seat => {
-          if (seat.status === "unavailable" && seat.passenger.user_id === state.user.id) {
+        const s = response.data.seats.map((seat) => {
+          if (
+            seat.status === "unavailable" &&
+            seat.passenger.user_id === state.user.id
+          ) {
             seat.status = "selected";
           }
           return seat;
         });
 
-        setFlight(response.data);/*save the flight*/
-        setSeats(s);/*all seats*/
+        setFlight(response.data); /*save the flight*/
+        setSeats(s); /*all seats*/
       })
       .catch((e) => {
         console.log("Find flight failed: ", e);
@@ -71,20 +78,20 @@ function BookingSeat() {
     console.log("confirmSeatSelection called.");
     const selectedSeat = seats.find((seat) => seat.status === "selected");
     FlightService.book_seat(flight.flightNumber, selectedSeat.number)
-    /*Save both in the backend8*/
-    .then((response) => {
-      console.log(response.data);
-      alert("Seat reserved");
-    })
-    .catch((e) => {
-      console.log("Find flight failed: ", e);
-      if (e.response.status === 401) {
-        navigate("/signout");
-        return;
-      } else if (e.response.status === 400) {
-        ShowError("Selected seat is unavailable");
-      }
-    });
+      /*Save both in the backend8*/
+      .then((response) => {
+        console.log(response.data);
+        alert("Seat reserved");
+      })
+      .catch((e) => {
+        console.log("Find flight failed: ", e);
+        if (e.response.status === 401) {
+          navigate("/signout");
+          return;
+        } else if (e.response.status === 400) {
+          ShowError("Selected seat is unavailable");
+        }
+      });
   };
 
   return (
@@ -143,13 +150,18 @@ function BookingSeat() {
                 <li>
                   Seat Selected:
                   {seats
-                    .filter((seat) => seat.status === "selected" || (seat.status === "unavailable" && seat.passenger.user_id === state.user.id))
+                    .filter(
+                      (seat) =>
+                        seat.status === "selected" ||
+                        (seat.status === "unavailable" &&
+                          seat.passenger.user_id === state.user.id)
+                    )
                     .map((seat, index) => `${seat.number}`)}
                 </li>
               </ul>
             </div>
 
-            <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+            <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-6">
               <button
                 type="button"
                 className="btn btn-primary btn-lg px-4 me-sm-3"
@@ -159,11 +171,19 @@ function BookingSeat() {
               </button>
               <button
                 type="button"
-                className="btn btn-primary btn-lg px-4 color: white"
-                onClick={()=> handleCancel()}
+                className="btn btn-primary btn-lg px-4 me-sm-3 color: white"
+                onClick={() => handleCancel()}
               >
                 Cancel
               </button>
+              <img
+                className="chat-img "
+                onClick={() => handleChat()}
+                src="/images/chat-icon.svg"
+                alt="icon"
+                width="150"
+                height="55"
+              />
             </div>
           </div>
         </div>
@@ -183,26 +203,37 @@ function BookingSeat() {
           <div className="col-lg-6">
             <h1 className="display-6 lh-1 mb-3">Seat Guide</h1>
             <p className="lead">
-
-            <ul class="showcase">
-      <li>
-        <div class="seat"></div>
-        <small>Available</small>
-      </li>
-      <li>
-        <div class="seat selected"></div>
-        <small>Selected</small>
-      </li>
-      <li>
-        <div class="seat occupied"></div>
-        <small>Occupied</small>
-      </li>
-    </ul>
-<ul>
-    Advance standard seat selection charges are refundable only in the following circumstances:
-<li>you are moved to a seat other than the one you selected due to an involuntary schedule or airport change (e.g., flight disruption, cancellation). If you are moved from your seat for such a reason, you may request a refund of your seat charges.</li>
-<li>you decide not to travel on a flight for which you purchased advance standard seat selection. The value of your advance standard seat selection charge will be retained and can be applied towards seat selection on a future Air Canada itinerary, provided you do not cancel your original booking.</li>
-</ul>
+              <ul class="showcase">
+                <li>
+                  <div class="seat"></div>
+                  <small>Available</small>
+                </li>
+                <li>
+                  <div class="seat selected"></div>
+                  <small>Selected</small>
+                </li>
+                <li>
+                  <div class="seat occupied"></div>
+                  <small>Occupied</small>
+                </li>
+              </ul>
+              <ul>
+                Advance standard seat selection charges are refundable only in
+                the following circumstances:
+                <li>
+                  you are moved to a seat other than the one you selected due to
+                  an involuntary schedule or airport change (e.g., flight
+                  disruption, cancellation). If you are moved from your seat for
+                  such a reason, you may request a refund of your seat charges.
+                </li>
+                <li>
+                  you decide not to travel on a flight for which you purchased
+                  advance standard seat selection. The value of your advance
+                  standard seat selection charge will be retained and can be
+                  applied towards seat selection on a future Air Canada
+                  itinerary, provided you do not cancel your original booking.
+                </li>
+              </ul>
             </p>
           </div>
         </div>
