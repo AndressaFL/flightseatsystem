@@ -14,7 +14,7 @@ function BookingSeat() {
   const { flightNumber } = useParams();
 
   const handleChat = () => {
-    navigate("/chat/:flightNumber");
+    navigate(`/chat/${flightNumber}`);
   };
   /*
   request param value
