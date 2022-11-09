@@ -22,7 +22,7 @@ function SearchFlight() {
   useEffect(() => {
     FlightService.find_all()
       .then((response) => {
-        /*save flight inf*/
+        /*save flight information*/
         setFlights(response.data);
       })
       .catch((e) => {
@@ -33,8 +33,6 @@ function SearchFlight() {
         }
       });
   }, []);
-
- 
 
   /*JSX como o react le e tranforma elementos no DOM*/
   return (

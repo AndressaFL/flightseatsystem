@@ -5,7 +5,6 @@ const cors = require("cors");
 
 /**/
 const { Server } = require("socket.io");
-/**/
 
 require("dotenv").config({ path: "./config.env" });
 const mongoose = require('mongoose');
@@ -37,9 +36,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const PORT = process.env.PORT || 5000;
-
+ /* perform a database connection when server starts*/
 const httpServer = app.listen(PORT, () => {
-   // perform a database connection when server starts
   console.log(`app running on port ${PORT}`)
 });
 
@@ -67,8 +65,5 @@ io.on("connection", (socket) => {
     console.log("User Disconnected", socket.id);
   });
 });
-
-
-/**/
 
 module.exports = app;
