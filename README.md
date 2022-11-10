@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Flight Seat System - Book your flight seat and chat with the passengers of your flight
 
 ## Available Scripts
 
@@ -11,7 +9,6 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Flight Seat System - Book your flight seat and chat with the passengers of your flight
 
 ## Description:
 
@@ -23,13 +20,13 @@ Flight Seat System is a web application where users are able to book and Chat wi
 
 ## Technologies Used:
 
-ReactJS
-NodeJS
-WebSockets (Socket.io)
-Mongodb
-HTML
-CSS
-Miro(App Drawings)
+- ReactJS
+- NodeJS
+- WebSockets (Socket.io)
+- MongoDB
+- HTML
+- CSS
+- Miro(App Drawings)
 
 ## Data Base Structure 
 
