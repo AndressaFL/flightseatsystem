@@ -12,7 +12,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Description:
 
-Flight Seat System is a web application where users are able to book and Chat with people who have the same flight. The user needs to login to have access to the whole features, as search for their flights, book seats, chat and sign up if they don't have an account.
+Flight Seat System is a web application where users can book and chat with people who have the same flight. The user needs to log in to have access to all features, such as searching for their flights, booking seats, changing seats, chatting and signing up if they don't have an account.
 
 ## Time Taken:
 
