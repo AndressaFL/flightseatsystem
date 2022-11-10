@@ -11,7 +11,7 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-# Flight Seat System - Book your flight seat and chat with the passengers of your flight.
+## Flight Seat System - Book your flight seat and chat with the passengers of your flight
 
 ## Description:
 
