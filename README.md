@@ -30,4 +30,4 @@ Flight Seat System is a web application where users are able to book and Chat wi
 
 ## Data Base Structure 
 
-![DB](https://github.com/AndressaFL/flightseatsystem/blob/main/images/database.png?raw=true
+![DB](https://github.com/AndressaFL/flightseatsystem/blob/main/images/database.png?raw=true)
