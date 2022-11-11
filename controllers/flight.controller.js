@@ -1,9 +1,9 @@
 const Flight = require("../db/models/flight.model");
 
 exports.find_flight = (req, res) => {
-  let flight_number = req.query.flight_number;
+  let flightId = req.query.flight_id;
 
-  Flight.findOne({ flightNumber: flight_number }).exec((err, flight) => {
+  Flight.findById(flightId).exec((err, flight) => {
     if (err) {
       res.status(500).send({ message: err });
       return;
@@ -34,10 +34,10 @@ exports.find_flights = (req, res) => {
 
 exports.book_seat = (req, res) => {
   const user = req.user;
-  const flightNumber = req.body.flightNumber;
+  const flightId = req.body.flightId;
   const seatNumber = req.body.seatNumber;
 
-  Flight.findOne({ flightNumber: flightNumber }).exec((err, flight) => {
+  Flight.findById(flightId).exec((err, flight) => {
     if (err) {
       res.status(500).send({ message: err });
       return;

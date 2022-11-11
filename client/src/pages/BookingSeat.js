@@ -11,10 +11,10 @@ function BookingSeat() {
   const [state, dispatch] = useContext(UserContext);
   const navigate = useNavigate();
 
-  const { flightNumber } = useParams();
+  const { flightId } = useParams();
 
   const handleChat = () => {
-    navigate(`/chat/${flightNumber}`);
+    navigate(`/chat/${flightId}`);
   };
   /*
   request param value
@@ -24,7 +24,7 @@ function BookingSeat() {
 
   useEffect(() => {
     console.log("getting current flight!");
-    FlightService.find(flightNumber)
+    FlightService.find(flightId)
       .then((response) => {
         console.log(response.data);
         const s = response.data.seats.map((seat) => {
@@ -77,7 +77,7 @@ function BookingSeat() {
   const confirmSeatSelection = (event) => {
     console.log("confirmSeatSelection called.");
     const selectedSeat = seats.find((seat) => seat.status === "selected");
-    FlightService.book_seat(flight.flightNumber, selectedSeat.number)
+    FlightService.book_seat(flight.flightId, selectedSeat.number)
       /*Save both in the backend8*/
       .then((response) => {
         console.log(response.data);

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const ChatMessageSchema = new mongoose.Schema({
-  message: {
+  text: {
     type: String,
   },
   user_id: {
@@ -9,8 +9,6 @@ const ChatMessageSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    required: [true, "Please provide a name!"],
-    unique: [true, "Name Exist"],
   },
   time: {
     type: Date,
@@ -22,13 +20,13 @@ const ChatSchema = new mongoose.Schema({
   messages: {
     type: [ChatMessageSchema],
   },
-  flightNumber: {
-    type: String,
-    required: [true, "Please provide a flight number!"],
-    unique: false,
+  flight_id: {
+    type: mongoose.ObjectId,
+    required: [true, "Please provide a flight id!"],
+    unique: true,
   },
 });
 
-const ChatMessage = mongoose.model("Chat", ChatMessageSchema);
+const Chat = mongoose.model("chats", ChatSchema);
 
-module.exports = ChatMessage;
+module.exports = Chat;

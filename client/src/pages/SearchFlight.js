@@ -15,8 +15,8 @@ function SearchFlight() {
     return formattedDate;
   };
 
-  const handleOnClick = (flightNumber) => {
-    navigate(`/bookseat/${flightNumber}`);
+  const handleOnClick = (flightId) => {
+    navigate(`/bookseat/${flightId}`);
   };
 
   useEffect(() => {
@@ -64,7 +64,7 @@ function SearchFlight() {
                 <td data-th="Arriving Time">{formatDate(flight.arrivingDate)}</td>
                 <td data-th="Choose your Seat">
                   <button
-                    onClick={() => handleOnClick(flight.flightNumber)}
+                    onClick={() => handleOnClick(flight._id)}
                     className="btn btn-primary"
                   >
                     Choose your seat

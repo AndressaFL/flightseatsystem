@@ -8,10 +8,12 @@ import BookingSeat from "./pages/BookingSeat";
 import Chat from "./pages/Chat";
 import io from "socket.io-client";
 import SignOut from "./pages/SignOut";
+import { useEffect } from "react";
 
-const socket = io.connect(process.env.REACT_APP_BACKEND_URL || "http://localhost:5000");
 
 function App() {
+  const socket = io.connect(process.env.REACT_APP_BACKEND_URL || "http://localhost:5000");
+
   return (
     <BrowserRouter>
        <Routes>
@@ -22,8 +24,8 @@ function App() {
            <Route path="signup" element={<SignUp />} />
            <Route path="signout" element={<SignOut />} />
            <Route path="searchflight" element={<SearchFlight />} />
-           <Route path="bookseat/:flightNumber" element={<BookingSeat />} />
-           <Route path="chat/:flightNumber" element={<Chat socket={socket} />} />
+           <Route path="bookseat/:flightId" element={<BookingSeat />} />
+           <Route path="chat/:flightId" element={<Chat socket={socket} />} />
            <Route path="*" element={<NoMatch />} />
          </Route>
        </Routes>

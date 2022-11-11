@@ -1,21 +1,21 @@
 import "./Chat.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../userContext";
 
-function Chat({ socket }) {
+function Chat({socket}) {
   const [state, dispatch] = useContext(UserContext);
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
-  const { flightNumber } = useParams();
-  socket.emit("join_room", flightNumber);
+  const { flightId } = useParams();
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
-        room: flightNumber,
+        room: flightId,
         author: state.user.name,
+        authorId: state.user.id,
         message: currentMessage,
         time:
           new Date(Date.now()).getHours() +
@@ -29,11 +29,24 @@ function Chat({ socket }) {
     }
   };
 
+  const roomMessagesHandler = useCallback((data) => {
+    setMessageList(data);
+  }, [setMessageList]);
+
+  const receiveMessageHandler = useCallback((data) => {
+    setMessageList((list) => [...list, data]);
+  }, [setMessageList]);
+
   useEffect(() => {
-    socket.on("receive_message", (data) => {
-      setMessageList((list) => [...list, data]);
-    });
-  }, [socket]);
+    socket.emit("join_room", flightId);
+
+    socket.on("room_messages", roomMessagesHandler);
+    socket.on("receive_message", receiveMessageHandler);
+    return () => {
+      socket.off("room_messages", roomMessagesHandler);
+      socket.off("receive_message", receiveMessageHandler);
+    };
+  }, [socket, flightId, roomMessagesHandler, receiveMessageHandler]);
 
   return (
     <div className="chat-window ">
