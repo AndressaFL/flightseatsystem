@@ -77,7 +77,7 @@ function BookingSeat() {
   const confirmSeatSelection = (event) => {
     console.log("confirmSeatSelection called.");
     const selectedSeat = seats.find((seat) => seat.status === "selected");
-    FlightService.book_seat(flight.flightId, selectedSeat.number)
+    FlightService.book_seat(flight._id, selectedSeat.number)
       /*Save both in the backend8*/
       .then((response) => {
         console.log(response.data);
