@@ -49,6 +49,17 @@ const io = new Server(httpServer, {
     origin: frontendUrl,
     methods: ["GET", "POST"],
   },
+  pingTimeout: 60000,
+});
+
+io.use((socket, next) => {
+  const userId = socket.handshake.auth.userId;
+  if (!userId) {
+    return next(new Error("invalid user"));
+  }
+  console.log("Chat User ID: ", userId);
+  socket.userId = userId;
+  next();
 });
 
 io.on("connection", (socket) => {

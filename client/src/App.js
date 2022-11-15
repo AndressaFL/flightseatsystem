@@ -8,11 +8,9 @@ import BookingSeat from "./pages/BookingSeat";
 import Chat from "./pages/Chat";
 import io from "socket.io-client";
 import SignOut from "./pages/SignOut";
-import { useEffect } from "react";
-
 
 function App() {
-  const socket = io.connect(process.env.REACT_APP_BACKEND_URL || "http://localhost:5000");
+  const socket = io(process.env.REACT_APP_BACKEND_URL || "http://localhost:5000", { autoConnect: false });
 
   return (
     <BrowserRouter>

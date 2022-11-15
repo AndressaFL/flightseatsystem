@@ -10,6 +10,9 @@ function Chat({socket}) {
 
   const { flightId } = useParams();
 
+  socket.auth = { userId: state.user.id };
+  socket.connect();
+
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
