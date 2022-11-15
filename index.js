@@ -28,7 +28,7 @@ const cookieOptions = {
   maxAge: oneDay,
   httpOnly: true,
   proxy: true,
-  domain: process.env.FRONTEND_URL || "http://localhost:3000",
+  domain: frontendUrl,
   secure: process.env.NODE_ENV === "production",
 };
 
@@ -36,17 +36,17 @@ if (process.env.NODE_ENV === "production") {
   cookieOptions["sameSite"] = "none";
 }
 
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
 app.use(sessions({
   secret: process.env.JWT_SECRET,
   saveUninitialized: true,
   cookie: cookieOptions,
   resave: false
 }));
-
-app.use(cors(corsOptions));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 const routes = require("./routes");
 app.use(routes);
