@@ -77,7 +77,8 @@ exports.signup = (req, res) => {
 
 exports.signout = (req, res) => {
   req.user = null;
-  res.clearCookie("access_token").send("OK");
+  req.session = null
+  res.send("OK");
 };
 
 exports.signin = (req, res) => {

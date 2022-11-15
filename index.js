@@ -27,6 +27,7 @@ const oneDay = 1000 * 60 * 60 * 24;
 const cookieOptions = {
   maxAge: oneDay,
   httpOnly: true,
+  proxy: true,
   domain: process.env.FRONTEND_URL || "http://localhost:3000",
   secure: process.env.NODE_ENV === "production",
 };
