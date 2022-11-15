@@ -1,6 +1,7 @@
 const createError = require("http-errors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const sessions = require('express-session');
 const cors = require("cors");
 const Chat = require("./db/models/chat.model");
 
@@ -16,6 +17,16 @@ mongoose
 const frontendUrl = process.env.FRONTEND_URL || "http://localhost:3000";
 const corsOptions = { credentials: true, origin: frontendUrl };
 const app = express();
+
+// creating 24 hours from milliseconds
+const oneDay = 1000 * 60 * 60 * 24;
+
+app.use(sessions({
+  secret: process.env.JWT_SECRET,
+  saveUninitialized: true,
+  cookie: { maxAge: oneDay },
+  resave: false
+}));
 
 app.use(cors(corsOptions));
 app.use(express.json());

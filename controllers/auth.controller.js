@@ -4,7 +4,7 @@ const User = require("../db/models/user.model");
 const util = require("util");
 
 exports.validatetoken = (req, res, next) => {
-  const token = req.cookies.access_token;
+  const token = req.session.access_token;
 
   if (!token) {
     console.log("token not found! :(");
@@ -107,6 +107,7 @@ exports.signin = (req, res) => {
       expiresIn: tokenExpiresIn,
     });
 
+    /*
     const options = {
       expires: new Date(Date.now() + tokenExpiresIn),
       httpOnly: true,
@@ -117,7 +118,9 @@ exports.signin = (req, res) => {
     if (process.env.NODE_ENV === "production") {
       options["sameSite"] = "none";
     }
+    */
 
-    res.cookie("access_token", token, options).send("OK");
+    req.session.access_token = token;
+    res.send("OK");
   });
 };
