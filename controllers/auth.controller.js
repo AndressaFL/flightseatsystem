@@ -107,19 +107,6 @@ exports.signin = (req, res) => {
       expiresIn: tokenExpiresIn,
     });
 
-    /*
-    const options = {
-      expires: new Date(Date.now() + tokenExpiresIn),
-      httpOnly: true,
-      origin: process.env.FRONTEND_URL || "http://localhost:3000",
-      secure: process.env.NODE_ENV === "production",
-    };
-
-    if (process.env.NODE_ENV === "production") {
-      options["sameSite"] = "none";
-    }
-    */
-
     req.session.access_token = token;
     res.send("OK");
   });

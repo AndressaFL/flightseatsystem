@@ -1,7 +1,7 @@
 const createError = require("http-errors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
-const sessions = require('express-session');
+const sessions = require('cookie-session');
 const cors = require("cors");
 const Chat = require("./db/models/chat.model");
 
@@ -23,7 +23,7 @@ const oneDay = 1000 * 60 * 60 * 24;
 const cookieOptions = {
   maxAge: oneDay,
   httpOnly: true,
-  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  domain: process.env.FRONTEND_URL || "http://localhost:3000",
   secure: process.env.NODE_ENV === "production",
 };
 
