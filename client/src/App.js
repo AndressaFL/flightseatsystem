@@ -10,7 +10,7 @@ import io from "socket.io-client";
 import SignOut from "./pages/SignOut";
 
 function App() {
-  const socket = io(process.env.REACT_APP_BACKEND_URL || "http://localhost:5000", { autoConnect: false });
+  //const socket = io(process.env.REACT_APP_BACKEND_URL || "http://localhost:5000", { autoConnect: false });
 
   return (
     <BrowserRouter>
@@ -23,7 +23,7 @@ function App() {
            <Route path="signout" element={<SignOut />} />
            <Route path="searchflight" element={<SearchFlight />} />
            <Route path="bookseat/:flightId" element={<BookingSeat />} />
-           <Route path="chat/:flightId" element={<Chat socket={socket} />} />
+           <Route path="chat/:flightId" element={<Chat />} />
            <Route path="*" element={<NoMatch />} />
          </Route>
        </Routes>

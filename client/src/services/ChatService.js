@@ -1,8 +1,12 @@
 import http from "../backend";
 
 class ChatService {
-  find(flight_number) {
-    return http.get("/chat?flight_number=" + flight_number);
+  getMessages(flightId) {
+    return http.get("/chat/" + flightId);
+  }
+
+  sendMessage(flightId, data) {
+    return http.post("/chat/" + flightId, data);
   }
 }
 

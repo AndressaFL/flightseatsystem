@@ -2,21 +2,33 @@ import "./Chat.css";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../userContext";
+import ChatService from "../services/ChatService";
 
-function Chat({socket}) {
+function Chat({ socket }) {
   const [state, dispatch] = useContext(UserContext);
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
   const { flightId } = useParams();
 
-  socket.auth = { userId: state.user.id };
-  socket.connect();
+  useEffect(() => {
+    const interval = setInterval(() => {
+      ChatService.getMessages(flightId)
+        .then((response) => {
+          setMessageList(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+          clearInterval(interval);
+        });
+    }, 3000);
 
-  const sendMessage = async () => {
+    return () => clearInterval(interval);
+  });
+
+  const sendMessage = () => {
     if (currentMessage !== "") {
       const messageData = {
-        room: flightId,
         author: state.user.name,
         authorId: state.user.id,
         message: currentMessage,
@@ -26,30 +38,16 @@ function Chat({socket}) {
           new Date(Date.now()).getMinutes(),
       };
 
-      await socket.emit("send_message", messageData);
-      setMessageList((list) => [...list, messageData]);
-      setCurrentMessage("");
+      ChatService.sendMessage(flightId, messageData)
+        .then((response) => {
+          setMessageList((list) => [...list, messageData]);
+          setCurrentMessage("");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   };
-
-  const roomMessagesHandler = useCallback((data) => {
-    setMessageList(data);
-  }, [setMessageList]);
-
-  const receiveMessageHandler = useCallback((data) => {
-    setMessageList((list) => [...list, data]);
-  }, [setMessageList]);
-
-  useEffect(() => {
-    socket.emit("join_room", flightId);
-
-    socket.on("room_messages", roomMessagesHandler);
-    socket.on("receive_message", receiveMessageHandler);
-    return () => {
-      socket.off("room_messages", roomMessagesHandler);
-      socket.off("receive_message", receiveMessageHandler);
-    };
-  }, [socket, flightId, roomMessagesHandler, receiveMessageHandler]);
 
   return (
     <div className="chat-window ">
