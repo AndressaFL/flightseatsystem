@@ -4,6 +4,7 @@ import UserService from "../../services/UserService";
 import { UserContext } from "../../userContext";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Header.css";
+import logo from "../../ac_logo.svg"
 
 function Header() {
   const [state, dispatch] = useContext(UserContext);
@@ -52,7 +53,7 @@ function Header() {
             height="30"
             className="ac-logo-image"
             alt="Air Canada"
-            src="https://content.achome.digital.aircanada.com/ac/applications/homepage/content/1.0.1009/assets/img/logos/ac/ac_logo.svg"
+            src={logo}
           />
         </Link>
         <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
