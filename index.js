@@ -20,11 +20,21 @@ const app = express();
 
 // creating 24 hours from milliseconds
 const oneDay = 1000 * 60 * 60 * 24;
+const cookieOptions = {
+  maxAge: oneDay,
+  httpOnly: true,
+  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  secure: process.env.NODE_ENV === "production",
+};
+
+if (process.env.NODE_ENV === "production") {
+  cookieOptions["sameSite"] = "none";
+}
 
 app.use(sessions({
   secret: process.env.JWT_SECRET,
   saveUninitialized: true,
-  cookie: { maxAge: oneDay },
+  cookie: cookieOptions,
   resave: false
 }));
 
