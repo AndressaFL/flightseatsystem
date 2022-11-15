@@ -4,10 +4,7 @@ const UserSchema = new mongoose.Schema({
   
   name: {
     type: String,
-    required: [true, "Please provide a name!"],
-    unique: [true, "Name Exist"],
-    
-
+    required: [true, "Please provide a name!"]
   },
   email: {
     type: String,
@@ -19,8 +16,6 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a password!"],
     unique: false,
-    min: 6,
-    max: 255 
   },
 });
 

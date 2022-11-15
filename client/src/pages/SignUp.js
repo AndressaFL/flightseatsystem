@@ -48,8 +48,14 @@ function SignUp(props) {
         console.log(response.data.email);
         navigate("/signin");
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((error) => {
+        console.log(error);
+        const responseData = error.response.data;
+        if (responseData.errors) {
+          responseData.errors.forEach(err => {
+            ShowError(err.message);
+          });
+        }
       });
   };
   return (

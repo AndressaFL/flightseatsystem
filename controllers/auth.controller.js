@@ -1,6 +1,7 @@
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 const User = require("../db/models/user.model");
+const util = require("util");
 
 exports.validatetoken = (req, res, next) => {
   const token = req.cookies.access_token;
@@ -27,20 +28,49 @@ exports.validatetoken = (req, res, next) => {
 
 exports.signup = (req, res) => {
   console.log("Adding new user: " + req.body.email);
+
   const user = new User({
     name: req.body.name,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
   });
 
-  user.save((err, user) => {
+  const validateError = user.validateSync();
+
+  if (validateError) {
+    let errorMessages = [];
+    if (validateError.errors["name"]) {
+      errorMessages.push({ message: validateError.errors["name"].message });
+    }
+
+    if (validateError.errors["email"]) {
+      errorMessages.push({ message: validateError.errors["email"].message });
+    }
+
+    res.status(400).json({ errors: errorMessages });
+    return;
+  }
+
+  User.findOne({ email: req.body.email }).exec((err, currentUser) => {
     if (err) {
-      res.status(500).send({ message: err });
+      console.log(err);
+      res.status(500).json({ message: "Internal Server Error Occurred" });
+      return;
+    } else if (currentUser) {
+      res.status(400).json({errors: [{ message: "There's an user with this email already." }],});
       return;
     }
 
-    res.status(200).json({
-      message: "user created sucessfully",
+    user.save((err, user) => {
+      if (err) {
+        console.log(err);
+        res.status(500).json({ message: "Internal Server Error Occurred" });
+        return;
+      }
+
+      res.status(200).json({
+        message: "user created sucessfully",
+      });
     });
   });
 };
