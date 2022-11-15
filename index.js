@@ -15,7 +15,11 @@ mongoose
   .catch((err) => console.error(err));
 
 const frontendUrl = process.env.FRONTEND_URL || "http://localhost:3000";
-const corsOptions = { credentials: true, origin: frontendUrl };
+const corsOptions = {
+  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+  credentials: true, 
+  origin: frontendUrl,
+};
 const app = express();
 
 // creating 24 hours from milliseconds
