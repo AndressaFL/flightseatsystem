@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { UserContext } from "../userContext";
 import ChatService from "../services/ChatService";
 
-function Chat({ socket }) {
+function Chat() {
   const [state, dispatch] = useContext(UserContext);
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
