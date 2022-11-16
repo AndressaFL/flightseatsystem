@@ -8,5 +8,6 @@ export default axios.create({
     'Access-Control-Allow-Origin' : process.env.REACT_APP_BACKEND_URL || "http://localhost:5000",
     'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
     'Content-Type': 'application/json',
+    'Accept': 'application/json',
   },
 });

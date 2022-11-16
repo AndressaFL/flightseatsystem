@@ -16,11 +16,17 @@ mongoose
 
 const frontendUrl = process.env.FRONTEND_URL || "http://localhost:3000";
 const corsOptions = {
-  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+  methods: ['POST', 'PUT', 'PATCH', 'GET', 'OPTIONS', 'HEAD'],
   credentials: true, 
   origin: frontendUrl,
+  preflightContinue: true,
 };
+
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cors(corsOptions));
 
 // creating 24 hours from milliseconds
 const oneDay = 1000 * 60 * 60 * 24;
@@ -34,16 +40,13 @@ const cookieOptions = {
 
 if (process.env.NODE_ENV === "production") {
   cookieOptions["sameSite"] = "none";
+  app.set("trust proxy", 1);
 }
 
-app.use(cors(corsOptions));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
 app.use(sessions({
   secret: process.env.JWT_SECRET,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: cookieOptions,
   resave: false
 }));
