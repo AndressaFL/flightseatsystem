@@ -39,7 +39,9 @@ const cookieOptions = {
 };
 
 if (process.env.NODE_ENV === "production") {
-  cookieOptions["sameSite"] = "none";
+  cookieOptions.sameSite = 'none';
+  cookieOptions.secure = true;
+
   app.set("trust proxy", 1);
 }
 
@@ -48,7 +50,7 @@ app.use(sessions({
   secret: process.env.JWT_SECRET,
   saveUninitialized: false,
   cookie: cookieOptions,
-  resave: false
+  resave: false,
 }));
 
 const routes = require("./routes");
