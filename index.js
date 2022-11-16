@@ -41,17 +41,26 @@ const cookieOptions = {
 if (process.env.NODE_ENV === "production") {
   cookieOptions.sameSite = 'none';
   cookieOptions.secure = true;
-
-  app.set("trust proxy", 1);
 }
 
-app.use(cookieParser());
-app.use(sessions({
+const sessionConfig = {
   secret: process.env.JWT_SECRET,
   saveUninitialized: false,
   cookie: cookieOptions,
   resave: false,
-}));
+}
+
+if (process.env.NODE_ENV === "production") {
+  sessionConfig.sameSite = 'none';
+  sessionConfig.secure = true;
+
+  app.set("trust proxy", 1);
+}
+
+console.log("sessionConfig: ", sessionConfig);
+
+app.use(cookieParser());
+app.use(sessions(sessionConfig));
 
 const routes = require("./routes");
 app.use(routes);
