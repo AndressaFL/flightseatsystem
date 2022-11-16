@@ -57,8 +57,6 @@ if (process.env.NODE_ENV === "production") {
   app.set("trust proxy", 1);
 }
 
-console.log("sessionConfig: ", sessionConfig);
-
 app.use(cookieParser());
 app.use(sessions(sessionConfig));
 

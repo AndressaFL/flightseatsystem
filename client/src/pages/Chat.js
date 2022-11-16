@@ -16,6 +16,8 @@ function Chat({ socket }) {
       ChatService.getMessages(flightId)
         .then((response) => {
           setMessageList(response.data);
+          const div = document.getElementById("scroll-to-bottom");
+          div.scrollTop = div.scrollHeight;
         })
         .catch((error) => {
           console.error(error);
@@ -25,6 +27,11 @@ function Chat({ socket }) {
 
     return () => clearInterval(interval);
   });
+
+  const formatDate = (date) => {
+    const formattedDate = new Date(date).toLocaleString("en-US", {timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone});
+    return formattedDate;
+  };
 
   const sendMessage = () => {
     if (currentMessage !== "") {
@@ -42,6 +49,8 @@ function Chat({ socket }) {
         .then((response) => {
           setMessageList((list) => [...list, messageData]);
           setCurrentMessage("");
+          const div = document.getElementById("scroll-to-bottom");
+          div.scrollTop = div.scrollHeight;
         })
         .catch((error) => {
           console.error(error);
@@ -56,7 +65,7 @@ function Chat({ socket }) {
       </div>
       <div className="chat-body">
         <div id="scroll-to-bottom" className="message-container">
-          {messageList.map((messageContent) => {
+          {messageList.map((messageContent, index) => {
             return (
               <div
                 className="message"
@@ -67,7 +76,7 @@ function Chat({ socket }) {
                     <p>{messageContent.message}</p>
                   </div>
                   <div className="message-meta">
-                    <p id="time">{messageContent.time}</p>
+                    <p id="time">{formatDate(messageContent.time)}</p>
                     <p id="author">{messageContent.author}</p>
                   </div>
                 </div>
