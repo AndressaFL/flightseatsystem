@@ -6,11 +6,9 @@ import SearchFlight from "./pages/SearchFlight";
 import SignUp from "./pages/SignUp";
 import BookingSeat from "./pages/BookingSeat";
 import Chat from "./pages/Chat";
-import io from "socket.io-client";
 import SignOut from "./pages/SignOut";
 
 function App() {
-  //const socket = io(process.env.REACT_APP_BACKEND_URL || "http://localhost:5000", { autoConnect: false });
 
   return (
     <BrowserRouter>

@@ -22,7 +22,6 @@ Flight Seat System is a web application where users can book and chat with peopl
 
 - ReactJS
 - NodeJS
-- WebSockets (Socket.io)
 - MongoDB
 - HTML
 - CSS
