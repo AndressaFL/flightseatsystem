@@ -3,6 +3,9 @@ var bcrypt = require("bcryptjs");
 const User = require("../db/models/user.model");
 const util = require("util");
 
+//functions to get the requested data from the model
+//create an HTML page displaying the data, and return it to the user to view it in the browser.
+
 exports.validatetoken = (req, res, next) => {
   const token = req.session.access_token;
 
@@ -102,8 +105,8 @@ exports.signin = (req, res) => {
         message: "Invalid login information!",
       });
     }
-
-    const tokenExpiresIn = 86400; // 24 hours
+// token - 24 hours
+    const tokenExpiresIn = 86400; 
     var token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
       expiresIn: tokenExpiresIn,
     });

@@ -5,6 +5,8 @@ const { find_flight, find_flights, book_seat } = require("./controllers/flight.c
 const { current_user } = require("./controllers/user.controller");
 const router = express.Router();
 
+//to forward the support requests(and any information encoded in request URL's) to the appropriate controller function.
+
 router.post("/signin", (req, res) => {
   signin(req, res);
 });

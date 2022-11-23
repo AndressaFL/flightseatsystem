@@ -1,6 +1,8 @@
 const Chat = require("../db/models/chat.model");
 const Flight = require("../db/models/flight.model");
 
+//functions to get the requested data from the model
+//create an HTML page displaying the data, and return it to the user to view it in the browser.
 exports.messages = (req, res) => {
   let flightId = req.params.flightId;
 
