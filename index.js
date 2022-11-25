@@ -3,10 +3,11 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const sessions = require('cookie-session');
 const cors = require("cors");
-const Chat = require("./db/models/chat.model");
-
-require("dotenv").config({ path: "./config.env" });
+const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+
+// load config file (environment variables)
+dotenv.config({ path: "./config.env" });
 
 mongoose.Promise = global.Promise;
 mongoose

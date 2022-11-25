@@ -7,6 +7,7 @@ const router = express.Router();
 
 //to forward the support requests(and any information encoded in request URL's) to the appropriate controller function.
 
+// non authentication required routes
 router.post("/signin", (req, res) => {
   signin(req, res);
 });
@@ -20,6 +21,7 @@ router.get("/signout", (req, res) => {
   signout(req, res);
 });
 
+// authentication required routes (validatetoken)
 router.get("/current_user", validatetoken, (req, res) => {
   current_user(req, res);
 });
