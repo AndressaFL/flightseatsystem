@@ -86,7 +86,7 @@ function Chat() {
         </div>
       </div>
       <div className="chat-footer">
-        <div class="input-group">
+        <div className="input-group">
           <input
             type="text"
             value={currentMessage}
