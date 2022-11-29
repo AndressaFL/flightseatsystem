@@ -203,17 +203,17 @@ function BookingSeat() {
           <div className="col-lg-6">
             <h1 className="display-6 lh-1 mb-3">Seat Guide</h1>
             <p className="lead">
-              <ul class="showcase">
+              <ul className="showcase">
                 <li>
-                  <div class="seat"></div>
+                  <div className="seat"></div>
                   <small>Available</small>
                 </li>
                 <li>
-                  <div class="seat selected"></div>
+                  <div className="seat selected"></div>
                   <small>Selected</small>
                 </li>
                 <li>
-                  <div class="seat occupied"></div>
+                  <div className="seat occupied"></div>
                   <small>Occupied</small>
                 </li>
               </ul>
