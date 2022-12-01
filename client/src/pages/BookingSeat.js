@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import FlightService from "../services/FlightService";
 import { UserContext } from "../userContext";
 import ShowError from "../components/ShowError/ShowError";
+import ConfirmationToasts from "../components/Confirmation/ConfirmationToasts";
 
 function BookingSeat() {
   const [seats, setSeats] = useState([]);
@@ -81,7 +82,8 @@ function BookingSeat() {
       /*Save both in the backend8*/
       .then((response) => {
         console.log(response.data);
-        alert("Seat reserved");
+        //alert("Seat reserved");
+        ConfirmationToasts("Seat reserved");
       })
       .catch((e) => {
         console.log("Find flight failed: ", e);
@@ -95,6 +97,7 @@ function BookingSeat() {
   };
 
   return (
+
     <div className="container">
       <div className="row">
         <div className="col-md-4">
@@ -137,6 +140,8 @@ function BookingSeat() {
             </div>
           </div>
         </div>
+        <div className="toast-container" id="toast-container-confirmation">
+          </div>
 
         <div className="col-md-8">
           <div className="h-100 p-4 bg-light border rounded-3 display-7">
