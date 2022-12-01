@@ -78,6 +78,13 @@ function BookingSeat() {
   const confirmSeatSelection = (event) => {
     console.log("confirmSeatSelection called.");
     const selectedSeat = seats.find((seat) => seat.status === "selected");
+
+    if(!selectedSeat){
+      console.log(selectedSeat);
+      ShowError("Please select a seat")
+      return;
+    }
+
     FlightService.book_seat(flight._id, selectedSeat.number)
       /*Save both in the backend8*/
       .then((response) => {
@@ -91,7 +98,7 @@ function BookingSeat() {
           navigate("/signout");
           return;
         } else if (e.response.status === 400) {
-          ShowError("Selected seat is unavailable");
+          ShowError("Selected seat is unavailable, please try an another seat");
         }
       });
   };
