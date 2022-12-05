@@ -1,5 +1,7 @@
 const createError = require("http-errors");
+//import express package
 const express = require("express");
+//middleware to read cookies
 const cookieParser = require("cookie-parser");
 const sessions = require('cookie-session');
 const cors = require("cors");
@@ -7,6 +9,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 
 // load config file (environment variables)
+//interact with our .env file
 dotenv.config({ path: "./config.env" });
 
 mongoose.Promise = global.Promise;
@@ -24,13 +27,14 @@ const corsOptions = {
 };
 
 const app = express();
-
+// -- MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors(corsOptions));
 
 // creating 24 hours from milliseconds
 const oneDay = 1000 * 60 * 60 * 24;
+//send our cookie with the token
 const cookieOptions = {
   maxAge: oneDay,
   httpOnly: true,
@@ -57,7 +61,7 @@ if (process.env.NODE_ENV === "production") {
 
   app.set("trust proxy", 1);
 }
-
+// -- MIDDLEWARE
 app.use(cookieParser());
 app.use(sessions(sessionConfig));
 
@@ -72,7 +76,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-
+//get port
 const PORT = process.env.PORT || 5000;
 /* perform a database connection when server starts*/
 const httpServer = app.listen(PORT, () => {

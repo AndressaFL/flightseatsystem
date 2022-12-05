@@ -31,8 +31,9 @@ exports.validatetoken = (req, res, next) => {
 
 exports.signup = (req, res) => {
   console.log("Adding new user: " + req.body.email);
-
-  const user = new User({
+   
+  //create new user using mongoose schema from models
+   const user = new User({
     name: req.body.name,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
@@ -86,6 +87,7 @@ exports.signout = (req, res) => {
 
 exports.signin = (req, res) => {
   console.log("Seaching for user: " + req.body.email);
+  //get the user
   User.findOne({
     email: req.body.email,
   }).exec((err, user) => {
@@ -97,7 +99,7 @@ exports.signin = (req, res) => {
     if (!user) {
       return res.status(404).send({ message: "User Not found." });
     }
-
+  //validate the hashed password we have in our database
     var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
 
     if (!passwordIsValid) {
@@ -105,8 +107,9 @@ exports.signin = (req, res) => {
         message: "Invalid login information!",
       });
     }
-// token - 24 hours
+    // token - 24 hours
     const tokenExpiresIn = 86400; 
+    //generate token to the user
     var token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
       expiresIn: tokenExpiresIn,
     });
